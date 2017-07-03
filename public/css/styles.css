@@ -1,0 +1,74 @@
+#index {
+	padding: 30px;
+	background-image: url("./../img/index.jpg");
+	background-position: center center;
+	background-attachment: fixed;
+	background-size: cover;
+	min-height: 100vh;
+	background-color: white;
+}
+
+.title-index {
+	margin-top: 50vh;
+	color: white;
+}
+
+.subtitle-index {
+	color: white;
+}
+
+#video {
+	width: 320px;
+	height: 240px;
+	background-color: gray;
+	border-radius: 8px;
+}
+
+#video > h3 {
+	color: white;
+	padding-top: 100px;
+}
+
+.item-advantages {
+	margin-top: 5px;
+	padding: 15px;
+	border-width: 1px;
+	border-radius: 5px;
+	box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
+	background-color: rgba(255, 255, 255, .8);
+}
+
+#about {
+	padding: 30px;
+}
+
+#advantages {
+	padding: 30px;
+	background-image: url("./../img/advantages.jpg");
+	background-position: center center;
+	background-attachment: fixed;
+	background-size: cover;
+	min-height: 100vh;
+	background-color: white;
+}
+
+#login {
+	background-image: url("./../img/index.jpg");
+	background-position: center center;
+	background-attachment: fixed;
+	background-size: cover;
+	min-height: 100vh;
+	background-color: white;
+}
+
+#login-form {
+	margin-top: 35vh;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 32px;
+	width: 45%;
+	height: 45%;
+	border-radius: 5px;
+	box-shadow: 1px 2px 4px rgba(0, 0, 0, .8);
+	background-color: rgba(255, 255, 255, .8);
+}

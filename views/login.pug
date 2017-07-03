@@ -1,0 +1,15 @@
+extends ./_layout.pug
+
+block content
+	#login
+		.container
+			.row
+				.col-md-12.center-align
+					form#login-form
+						.form-group
+							label(for="email") Correo Electrónico
+							input.form-control#email(type="email", placeholder="ejemplo@correo.com")
+						.form-group
+							label(for="password") Contraseña
+							input.form-control#password(type="password", placeholder="Contraseña")
+						button.btn.btn-default(type="submit") Ingresar

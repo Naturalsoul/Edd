@@ -1,0 +1,36 @@
+{
+  "name": "edd",
+  "version": "1.0.0",
+  "description": "Proyecto de titulo. Sistema web de planificacion horaria academica",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Naturalsoul/Edd.git"
+  },
+  "keywords": [
+    "tesis",
+    "proyecto",
+    "de",
+    "titulo",
+    "sistema",
+    "web",
+    "algoritmo",
+    "educacion"
+  ],
+  "author": "Naturalsoul",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Naturalsoul/Edd/issues"
+  },
+  "homepage": "https://github.com/Naturalsoul/Edd#readme",
+  "dependencies": {
+    "express": "^4.15.3",
+    "pug": "^2.0.0-rc.2"
+  }
+}

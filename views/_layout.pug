@@ -1,0 +1,60 @@
+doctype html
+html
+	head
+		title Edd
+		link(rel="stylesheet", href="/css/bootstrap.min.css")
+		link(rel="stylesheet", href="/css/styles.css")
+		meta(charset="utf-8")
+	body
+		nav.navbar.navbar-default.navbar-fixed-top
+			.container
+				a.navbar-brand(href='#!') Edd
+				ul.nav.navbar-nav.navbar-right
+					li
+						a(href='/') Inicio
+					li.dropdown
+						a.dropdown-toggle(href="#", data-toggle="dropdown", role="button", aria-haspopup="true", aria-expanded="false") Ingresar información
+							span.caret
+						ul.dropdown-menu
+							li
+								a(href='/docentes') Docentes
+							li
+								a(href='/salas') Salas
+							li
+								a(href='/asignaturas') Asignaturas
+							li
+								a(href='/mayas') Mayas
+							li
+								a(href='/secciones') Secciones
+							li
+								a(href='/carreras') Carreras
+							li
+								a(href='/areas') Áreas
+					li.dropdown
+						a.dropdown-toggle(href="#", data-toggle="dropdown", role="button", aria-haspopup="true", aria-expanded="false") Planeación
+							span.caret
+						ul.dropdown-menu
+							li
+								a(href="/planificarhorarios") Planificar horarios
+							li
+								a(href="/verhorarios") Ver horarios planificados
+					li.dropdown
+						a.dropdown-toggle(href="#", data-toggle="dropdown", role="button", aria-haspopup="true", aria-expanded="false") Otras actividades
+							span.caret
+						ul.dropdown-menu
+							li
+								a(href="/informacionpersonal") Modificar información personal
+							li
+								a(href="/crearusuario") Crear usuario
+							li
+								a(href="/registroactividades") Ver registro de actividades
+					li.connected
+						a(href='/logout') Cerrar Sesión
+					li.disconnected
+						a(href="/login") Iniciar Sesión
+
+		block content
+
+		script(type="text/javascript", src="/js/jquery-3.2.1.min.js")
+		script(type="text/javascript", src="/js/bootstrap.min.js")
+		script(type="text/javascript", src="/js/scripts.js")
