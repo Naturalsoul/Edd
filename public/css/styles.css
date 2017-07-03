@@ -1,15 +1,11 @@
 #index {
 	padding: 30px;
-	background-image: url("./../img/index.jpg");
-	background-position: center center;
-	background-attachment: fixed;
-	background-size: cover;
-	min-height: 100vh;
-	background-color: white;
+	min-height: 10vh;
+	background-color: gray;
 }
 
 .title-index {
-	margin-top: 50vh;
+	margin-top: 10vh;
 	color: white;
 }
 
@@ -44,21 +40,17 @@
 
 #advantages {
 	padding: 30px;
-	background-image: url("./../img/advantages.jpg");
-	background-position: center center;
-	background-attachment: fixed;
-	background-size: cover;
 	min-height: 100vh;
-	background-color: white;
+	background-color: gray;
+}
+
+#beneficios-title {
+	color: white;
 }
 
 #login {
-	background-image: url("./../img/index.jpg");
-	background-position: center center;
-	background-attachment: fixed;
-	background-size: cover;
 	min-height: 100vh;
-	background-color: white;
+	background-color: gray;
 }
 
 #login-form {
