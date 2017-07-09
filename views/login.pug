@@ -8,8 +8,8 @@ block content
 					form#login-form
 						.form-group
 							label(for="email") Correo Electrónico
-							input.form-control#email(type="email", placeholder="ejemplo@correo.com")
+							input.form-control#email(type="email", placeholder="ejemplo@correo.com", name="email")
 						.form-group
 							label(for="password") Contraseña
-							input.form-control#password(type="password", placeholder="Contraseña")
-						button.btn.btn-default(type="submit") Ingresar
+							input.form-control#password(type="password", placeholder="Contraseña", name="pass")
+						button.btn.btn-default#login-submit(type="button") Ingresar

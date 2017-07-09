@@ -30,7 +30,10 @@
   },
   "homepage": "https://github.com/Naturalsoul/Edd#readme",
   "dependencies": {
+    "body-parser": "^1.17.2",
     "express": "^4.15.3",
+    "express-session": "^1.15.3",
+    "mysql": "^2.13.0",
     "pug": "^2.0.0-rc.2"
   }
 }

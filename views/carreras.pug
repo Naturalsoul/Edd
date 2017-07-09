@@ -1,0 +1,37 @@
+extends ./_layout.pug
+
+block content
+	#ingresarcarrera
+		.container
+			.row
+				.col-md-12
+					h2.text-center Ingresar Carreras
+			.row
+				.col-md-12
+					form#carreras-form
+						.row
+							.col-md-6
+								.form-group
+									label(for="codigo") Código
+									input.form-control#codigo-carrera(type="text", placeholder="Código de Carrera", name="codigocarrera")
+							.col-md-6
+								.form-group
+									label(for="nombre") Nombre
+									input.form-control#nombre-carrera(type="text", placeholder="Nombre de la Carrera", name="nombrecarrera")
+						.row
+							.col-md-6
+								.form-group
+									label(for="area") Área
+									select.form-control#area(name="area")
+							.col-md-6
+								.form-group
+									button.btn.btn-default#ingresar-carrera(type="button") Ingresar Carrera
+
+	#mostrarcarreras
+		.container
+			.row
+				.col-md-12
+					h2.text-center Listado de Carreras
+			.row
+				.col-md-12
+					ul.list-group#listadocarreras

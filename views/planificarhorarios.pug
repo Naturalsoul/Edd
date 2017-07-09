@@ -1,0 +1,31 @@
+extends ./_layout.pug
+
+block content
+	#planificarhorarios
+		.container
+			.row
+				.col-md-12
+					h2.text-center Planificar Horarios
+			.row
+				.col-md-12
+					label(for="area")
+					select.form-control#planificararea(name="planificararea")
+				.col-md-12
+					label(for="carrera")
+					select.form-control#planificarcarrera(name="planificarcarrera")
+				.col-md-12
+					br
+					button.btn.btn-default#btnplanificar(data-toggle="modal" data-target="#modalplanificar") Planificar Horarios
+
+	.modal.fade#modalplanificar(tabindex="-1", role="dialog")
+		.modal-dialog(role="document")
+			.modal-content
+				.modal-header
+					button.close(type="button", data-dismiss="modal", arial-label="Close")
+						span(aria-hidden="true") X
+					h4.text-center.modal-title En construcción
+				.modal-body
+					p Trabajando muy duro, como un esclavo para el próximo semestre
+					img.img-responsive(src="/img/homero.gif")
+				.modal-footer
+					button.btn.btn-default(type="button", data-dismiss="modal") Cerrar
