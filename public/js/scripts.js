@@ -11,7 +11,7 @@ $(document).ready(() => {
 			data: $("#login-form").serialize(),
 			success: (data) => {
 				if (data.connected) {
-					window.location.href = "http://localhost:5000";
+					window.location.href = "https://edd-naturalsoul.c9users.io/";
 				} else {
 					alert("Usuario Inválido")
 				}

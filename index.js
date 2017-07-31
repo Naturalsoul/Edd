@@ -13,6 +13,6 @@ app.use(bodyParser.json())
 
 app.use("/", mainRoutes)
 
-app.listen(5000, () => {
+app.listen(process.env.PORT, () => {
 	console.log("App listening!")
 })
