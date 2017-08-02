@@ -3,6 +3,7 @@ var router = express.Router()
 var UserModel = require("../model/user.model.js")
 var CarreraModel = require("../model/carrera.model.js")
 var AreaModel = require("../model/area.model.js")
+var PerfilProfesionalModel = require("../model/perfilprofesional.model.js")
 
 router.get("/", (req, res) => {
 	res.render("index")
@@ -62,10 +63,58 @@ router.post("/incarrera", (req, res) => {
 	})
 })
 
+router.get("/areas", (req, res) => {
+	res.render("areas")
+})
+
 router.get("/getareas", (req, res) => {
 	AreaModel.getAreas(req.session.area, (results) => {
 		res.status(200).send(results)
 	})
+})
+
+router.get("/getallareas", (req, res) => {
+	AreaModel.getAll((results) => {
+		res.status(200).send(results)
+	})
+})
+
+router.post("/inarea", (req, res) => {
+	AreaModel.inArea(req.body.codigoarea, req.body.nombrearea, (results) => {
+		if (results) {
+			res.status(200).send("Área Registrada!")
+		} else {
+			res.status(403).send("Error al ingresar el Área.")
+		}
+	})
+})
+
+router.get("/perfilprofesional", (req, res) => {
+	res.render("perfilesprofesionales")
+})
+
+router.get("/allperfiles", (req, res) => {
+	PerfilProfesionalModel.getPerfiles((results) => {
+		res.status(200).send(results)
+	})
+})
+
+router.post("/inperfiles", (req, res) => {
+	PerfilProfesionalModel.inPerfil(req.body.perfilprofesional, (results) => {
+		if (results) {
+			res.status(200).send("Perfil profesional Registrado!")
+		} else {
+			res.status(403).send("Error al ingresar el Perfil profesional.")
+		}
+	})
+})
+
+router.get("/docentes", (req, res) => {
+	res.render("docentes")
+})
+
+router.get("/alldocentes", (req, res) => {
+	
 })
 
 router.get("/planificarhorarios", (req, res) => {

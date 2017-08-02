@@ -1,0 +1,38 @@
+extends ./_layout.pug
+
+block content
+    
+    #ingresarperfilprofesional.formcontent
+        .container
+            .row
+                .col-md-12
+                    h2.text-center Ingresar Perfil Profesional
+            .row
+                .col-md-12
+                    form#form-perfilprofesional
+                        .row
+                            .col-md-6
+                                label(for="perfilprofesional") Perfil Profesional
+                                textarea.form-control#perfilprofesional(maxlength="200", name="perfilprofesional")
+                            .col-md-6
+                                button.btn.btn-default#btningresarperfilprofesional(type="button") Ingresar Perfil Profesional
+    
+    #mostrarperfilesprofesionales.tablecontent
+        .container
+            .row
+                .col-md-12
+                    h2.text-center Listado de Perfiles Profesionales
+            .row
+                .col-md-12
+                    .table-responsive
+                        table.table
+                            thead
+                                tr
+                                    th Id
+                                    th Perfil
+                                    th Acciones
+                            tbody#tablaperfilesprofesionales
+    
+block scripts
+
+    script(type="text/javascript", src="/js/perfilesprofesionales.js")

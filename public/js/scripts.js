@@ -1,6 +1,7 @@
 $(document).ready(() => {
 	checkSessions()
 	getAreas()
+	getAreasForModel()
 	getCarreras()
 	getCarrerasPlanificar()
 
@@ -81,7 +82,7 @@ $(document).ready(() => {
 	})
 
 	function getCarreras() {
-		var list = ""
+		var table = ""
 
 		$.ajax({
 			type: "GET",
@@ -95,10 +96,10 @@ $(document).ready(() => {
 
 		function inResults(data) {
 			data.forEach((e) => {
-				list += "<li class='list-group-item' value='" + e.codigo + "'>" + e.codigo + " - " + e.nombre + "</li>"
+				table += "<tr><td>" + e.codigo + "</td><td>" + e.nombre + "</td><td> acciones </td></tr>"
 			})
 
-			$("#listadocarreras").html(list)
+			$("#tablacarreras").html(table)
 		}
 	}
 
@@ -123,4 +124,43 @@ $(document).ready(() => {
 			$("#planificarcarrera").html(options)
 		}
 	}
+	
+	function getAreasForModel () {
+		var table = ""
+		
+		$.ajax({
+			type: "GET",
+			url: "/getallareas",
+			contentType: "application/json",
+			dataType: "json",
+			success: (data) => {
+				inResults(data)
+			}
+		})
+		
+		function inResults(data) {
+			data.forEach((e) => {
+				table += "<tr><td>" + e.codigo + "</td><td>" + e.nombre + "</td><td> acciones </td></tr>"
+			})
+			
+			$("#tablaareas").html(table)
+		}
+	}
+	
+	$("#btningresararea").on("click", () => {
+		$.ajax({
+			type: "POST",
+			url: "/inarea",
+			data: $("#form-area").serialize(),
+			success: (data) => {
+				alert(data)
+				$("#codigo-area").text("");
+				$("#nombre-area").text("");
+				getAreasForModel()
+			},
+			error: (data) => {
+				alert(data)
+			}
+		})
+	})
 })

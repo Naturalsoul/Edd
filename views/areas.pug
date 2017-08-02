@@ -1,0 +1,42 @@
+extends ./_layout.pug
+
+block content
+    
+    #ingresararea.formcontent
+        .container
+            .row
+                .col-md-12
+                    h2.text-center Ingresar Áreas
+            .row
+                .col-md-12
+                    form#form-area
+                        .row
+                            .col-md-6
+                                .form-group
+                                    label(for="codigo") Código
+                                    input.form-control#codigo-area(type="text", placeholder="Código de Área", name="codigoarea")
+                            .col-md-6
+                                .form-group
+                                    label(for="nombre") Nombre
+                                    input.form-control#nombre-area(type="text", placeholder="Nombre del Área", name="nombrearea")
+                        .row
+                            .col-md-12
+                                .form-group
+                                    button.btn.btn-default#btningresararea(type="button") Ingresar Área
+                                    
+    #mostrarareas.tablecontent
+        .container
+            .row
+                .col-md-12
+                    h2.text-center Listado de Áreas
+            .row
+                .col-md-12
+                    .table-responsive
+                        table.table
+                            thead
+                                tr
+                                    th Códigos
+                                    th Nombres
+                                    th Acciones
+                            tbody#tablaareas
+        

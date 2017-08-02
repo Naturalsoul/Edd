@@ -1,0 +1,62 @@
+extends ./_layout.pug
+
+block content
+
+    #ingresardocente.formcontent
+        .container
+            .row
+                .col-md-12
+                    h2.text-center Ingresar Docentes
+            .row
+                .col-md-12
+                    form#form-docente
+                        .row
+                            .col-md-6
+                                .form-group
+                                    label(for="rutdocente") Rut
+                                    input.form-control#rutdocente(type="text", placeholder="Ingrese el Rut del Docente", pattern="(\d){1,2}(\.)?(\d){3}(\.)?(\d){3}(-)([0123456789kK])", name="rutdocente")
+                            .col-md-6
+                                .form-group
+                                    label(for="nombredocente") Nombre
+                                    input.form-control#nombredocente(type="text", placeholder="Ingrese el Nombre del Docente", name="nombredocente")
+                            .col-md-6
+                                .form-group
+                                    label(for="prioridaddocente") Prioridad
+                                    input.form-control#prioridaddocente(type="number", name="prioridaddocente")
+                            .col-md-6
+                                .form-group
+                                    label(for="disponibilidaddocente") Disponibilidad
+                                    input#disponibilidaddocente(type="file", accept=".csv")
+                                    p El archivo debe ser un Excel .csv
+                            .col-md-6
+                                .form-group
+                                    label(for="areadocente") Área
+                                    select.form-control#areadocente(name="areadocente")
+                            .col-md-6
+                                .form-group
+                                    label(for="perfilprofesionaldocente") Perfil Profesional
+                                    select.form-control#perfilprofesionaldocente(name="perfilprofesionaldocente")
+                        .row
+                            .col-md-12
+                                .form-group
+                                    button.btn.btn-default#btningresardocente(type="button") Ingresar Docente
+                                    
+    #mostrardocentes.tablecontent
+        .container
+            .row
+                .col-md-12
+                    h2.text-center Listado de Docentes
+            .row
+                .col-md-12
+                    .table-responsive
+                        table.table
+                            thead
+                                tr
+                                    th Rut
+                                    th Nombre
+                                    th Prioridad
+                                    th Disponibilidad
+                                    th Área
+                                    th Perfil Profesional
+                                    th Acciones
+                            tbody#tabladocentes
