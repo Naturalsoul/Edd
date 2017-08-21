@@ -1,0 +1,28 @@
+extends ./_layout
+
+block content
+    #ingresarmaya.formcontent
+        .container
+            .row
+                .col-md-12
+                    h2.text-center Ingresar Maya
+            .row
+                .col-md-12
+                    form#form-maya
+                        .row
+                            .col-md-6
+                                .form-group
+                                    label(for="codigomaya") Código
+                                    input.form-control#codigomaya(type="text", placeholder="Ingrese el código de la Maya", name="codigomaya")
+                            .col-md-6
+                                .form-group
+                                    label(for="cantidadasignaturas") Cantidad de Asignaturas de la Maya
+                                    input.form-control#cantidadasignaturas(type="number", plaholcer="Ingrese la cantidad de asignaturas", name="cantidadasignaturas")
+                            .col-md-6
+                                .form-group
+                                    label(for="codigocarreramaya") Carrera
+                                    select.form-control#codigocarreramaya(name="codigocarreramaya")
+                        .row
+                            .col-md-12
+                                .form-group
+                                    button.btn.btn-default(type="submit") Ingresar Maya

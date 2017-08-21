@@ -55,7 +55,7 @@ $(document).ready(() => {
 
 		function inResults() {
 			results.forEach((e) => {
-				optionsArea += "<option value='" + e.codigo + "'>" + e.nombre + "</li>"
+				optionsArea += "<option value='" + e.codigo + "'>" + e.nombre + "</option>"
 			})
 
 			$("#area").html(optionsArea)
@@ -118,7 +118,7 @@ $(document).ready(() => {
 
 		function inResults(data) {
 			data.forEach((e) => {
-				options += "<option value='" + e.codigo + "'>" + e.nombre + "</li>"
+				options += "<option value='" + e.codigo + "'>" + e.nombre + "</option>"
 			})
 
 			$("#planificarcarrera").html(options)

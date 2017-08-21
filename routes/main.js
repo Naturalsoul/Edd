@@ -1,9 +1,14 @@
 var express = require("express")
+var multer = require("multer")
 var router = express.Router()
+
+
 var UserModel = require("../model/user.model.js")
 var CarreraModel = require("../model/carrera.model.js")
 var AreaModel = require("../model/area.model.js")
 var PerfilProfesionalModel = require("../model/perfilprofesional.model.js")
+var DocenteModel = require("../model/docente.model.js")
+var SalaModel = require("../model/sala.model.js")
 
 router.get("/", (req, res) => {
 	res.render("index")
@@ -114,7 +119,52 @@ router.get("/docentes", (req, res) => {
 })
 
 router.get("/alldocentes", (req, res) => {
-	
+	DocenteModel.getDocentes((results) => {
+		res.status(200).send(results)
+	})
+})
+
+router.post("/indocente", multer({ dest: "./model/disponibilidades/"}).single("disponibilidaddocente"), (req, res) => {
+	console.dir(req.body)
+	DocenteModel.inDocente({
+		rut: req.body.rutdocente,
+		nombre: req.body.nombredocente,
+		prioridad: req.body.prioridaddocente,
+		disponibilidad: req.file,
+		codigo_area: req.body.areadocente,
+		id_perfilprofesional: req.body.perfilprofesionaldocente
+	}, (results) => {
+		if (results) {
+			res.status(200).send("¡Docente registrado correctamente!")
+		} else {
+			res.status(403).send("Error al ingresar el docente. Verifique que los campos sean correctos.")
+		}
+	})
+})
+
+router.get("/salas", (req, res) => {
+	res.render("salas")
+})
+
+router.get("/allsalas", (req, res) => {
+	SalaModel.getSalas((results) => {
+		res.status(200).send(results)
+	})
+})
+
+router.post("/insala", multer({ dest: "./model/disponibilidad/salas/" }).single("disponibilidadsala"), (req, res) => {
+	SalaModel.inSala({
+		codigo: req.body.codigo,
+		capacidad_alumnos: req.body.capacidadalumnos,
+		equipamiento_tecnologico: req.body.capacidadalumnos,
+		disponibilidad: req.file.disponibilidadsala
+	}, (results) => {
+		if (results) {
+			res.send(200).send("¡Sala registrada correctamente!")
+		} else {
+			res.status(403).send("Error al ingresar la sala. Verifique que los campos sean correctos.")
+		}
+	})
 })
 
 router.get("/planificarhorarios", (req, res) => {

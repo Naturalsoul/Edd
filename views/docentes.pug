@@ -9,12 +9,13 @@ block content
                     h2.text-center Ingresar Docentes
             .row
                 .col-md-12
-                    form#form-docente
+                    form#form-docente(method="POST", enctype="multipart/form-data", action="/indocente")
                         .row
                             .col-md-6
                                 .form-group
                                     label(for="rutdocente") Rut
-                                    input.form-control#rutdocente(type="text", placeholder="Ingrese el Rut del Docente", pattern="(\d){1,2}(\.)?(\d){3}(\.)?(\d){3}(-)([0123456789kK])", name="rutdocente")
+                                    input.form-control#rutdocente(type="text", placeholder="Ingrese el Rut del Docente", name="rutdocente")
+                                    // pattern="(\d){1,2}(\.)?(\d){3}(\.)?(\d){3}(\-)([0123456789kK])"
                             .col-md-6
                                 .form-group
                                     label(for="nombredocente") Nombre
@@ -26,7 +27,7 @@ block content
                             .col-md-6
                                 .form-group
                                     label(for="disponibilidaddocente") Disponibilidad
-                                    input#disponibilidaddocente(type="file", accept=".csv")
+                                    input#disponibilidaddocente(type="file", accept=".csv", name="disponibilidaddocente")
                                     p El archivo debe ser un Excel .csv
                             .col-md-6
                                 .form-group
@@ -39,7 +40,7 @@ block content
                         .row
                             .col-md-12
                                 .form-group
-                                    button.btn.btn-default#btningresardocente(type="button") Ingresar Docente
+                                    button.btn.btn-default(type="submit") Ingresar Docente
                                     
     #mostrardocentes.tablecontent
         .container
@@ -60,3 +61,7 @@ block content
                                     th Perfil Profesional
                                     th Acciones
                             tbody#tabladocentes
+                            
+block scripts
+
+    script(type="text/javascript", src="/js/docentes.js")
