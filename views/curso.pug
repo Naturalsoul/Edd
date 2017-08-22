@@ -1,0 +1,43 @@
+extends ./_layout
+
+block content
+    #ingresarcurso.formcontent
+        .container
+            .row
+                .col-md-12
+                    h2.text-center Ingresar Curso
+            .row
+                .col-md-12
+                    form#form-curso
+                        .row
+                            .col-md-6
+                                .form-group
+                                    label(for="codigocurso") Código
+                                    input.form-control#codigocurso(type="text", placeholder="Ingrese el código del Curso", name="codigocurso")
+                            .col-md-6
+                                .form-group
+                                    label(for="tamanocurso") Tamaño del Curso
+                                    input.form-control#tamanocurso(type="number", placeholder="Ingrese la cantidad Máxima de alumnos del Curso", name="tamanocurso")
+                        .row
+                            .col-md-12
+                                .form-group
+                                    button.btn.btn-default(type="submit") Ingresar Curso
+                                    
+    #mostrarcurso.tablecontent
+        .container
+            .row
+                .col-md-12
+                    h2.text-center Cursos
+            .row
+                .col-md-12
+                    .table-responsive
+                        table.table
+                            thead
+                                tr
+                                    th Código
+                                    th Tamaño Máximo
+                                    th Acciones
+                            tbody#tablecursos
+
+block scripts
+    script(type="text/javascript", src="/js/cursos.js")

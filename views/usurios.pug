@@ -1,0 +1,52 @@
+extends ./_layout
+
+block content
+    #ingresarusuario.formcontent
+        .container
+            .row
+                .col-md-12
+                    h2.text-center Ingresar Usuario
+            .row
+                .col-md-12
+                    form#form-usuario
+                        .row
+                            .col-md-6
+                                .form-group
+                                    label(for="correousuario") Correo Electrónico
+                                    input.form-control#correousuario(type="text", placeholder="Ingrese el Correo Electrónico del nuevo Usuario", name="correousuario")
+                            .col-md-6
+                                .form-group
+                                    label(for="contrasenausuario") Contraseña
+                                    input.form-control#contrasenausuario(type="password", placeholder="Ingrese la Contraseña del nuevo Usuario", name="contrasenausuario")
+                            .col-md-6
+                                .form-group
+                                    label(for="nombreusuario") Nombre
+                                    input.form-control#nombreusuario(type="text", placeholder="Ingrese el Nombre del nuevo Usuario", name="nombreusuario")
+                            .col-md-6
+                                .form-group
+                                    label(for="areausuario") Área
+                                    select.form-control#areausuario(name="areausuario")
+                        .row
+                            .col-md-12
+                                .form-group
+                                    button.btn.btn-default(type="submit") Ingresar Usuario
+                                    
+    #mostrarusuarios.tablecontent
+        .container
+            .row
+                .col-md-12
+                    h2.text-center Usuarios
+            .row
+                .col-md-12
+                    .table-responsive
+                        table.table
+                            thead
+                                tr
+                                    th Correo Electrónico
+                                    th Nombre
+                                    th Área
+                                    th Acciones
+                            tbody#tableusuarios
+
+block scripts
+    script(type="text/javascript", src="/js/usuarios.js")

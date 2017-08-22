@@ -17,7 +17,7 @@ block content
                             .col-md-6
                                 .form-group
                                     label(for="cantidadasignaturas") Cantidad de Asignaturas de la Maya
-                                    input.form-control#cantidadasignaturas(type="number", plaholcer="Ingrese la cantidad de asignaturas", name="cantidadasignaturas")
+                                    input.form-control#cantidadasignaturas(type="number", placeholder="Ingrese la cantidad de asignaturas", name="cantidadasignaturas")
                             .col-md-6
                                 .form-group
                                     label(for="codigocarreramaya") Carrera
@@ -26,3 +26,23 @@ block content
                             .col-md-12
                                 .form-group
                                     button.btn.btn-default(type="submit") Ingresar Maya
+                                    
+    #mostrarmaya.tablecontent
+        .container
+            .row
+                .col-md-12
+                    h2.text-center Mayas
+            .row
+                .col-md-12
+                    .table-responsive
+                        table.table
+                            thead
+                                tr
+                                    th Código
+                                    th Cantidad de Asignaturas
+                                    th Carrera
+                                    th Acciones
+                            tbody#tablemayas
+
+block scripts
+    script(type="text/javascript", src="/js/mayas.js")

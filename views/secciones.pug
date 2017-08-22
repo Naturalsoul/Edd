@@ -1,0 +1,82 @@
+extends ./_layout
+
+block content
+    #ingresarseccion.formcontent
+        .container
+            .row
+                .col-md-12
+                    h2.text-center Ingresar Sección
+            .row
+                .col-md-12
+                    form#form-seccion
+                        .row
+                            .col-md-6
+                                .form-group
+                                    label(for="codigoseccion") Código
+                                    input.form-control#codigoseccion(type="text", placeholder="Ingrese el código de la Sección", name="codigoseccion")
+                            .col-md-6
+                                .form-group
+                                    label(for="nombreseccion") Nombre
+                                    input.form-control#nombreseccion(type="text", placeholder="Ingrese el nombre de la Sección", name="nombreseccion")
+                            .col-md-6
+                                .form-group
+                                    label(for="semestreseccion") Semestre Actual
+                                    select.form-control#semestreseccion(name="semestreseccion")
+                                        option(value="0") 1º Semestre
+                                        option(value="1") 2º Semestre
+                                        option(value="2") 3º Semestre
+                                        option(value="3") 4º Semestre
+                                        option(value="4") 5º Semestre
+                                        option(value="5") 6º Semestre
+                                        option(value="6") 7º Semestre
+                                        option(value="7") 8º Semestre
+                                        option(value="8") 9º Semestre
+                            .col-md-6
+                                .form-group
+                                    label(for="horainicioseccion") Hora de Inicio Diaria
+                                    input.form-control#horainicioseccion(type="time", placeholder="Ingrese la hora de inicio diaria de la Sección", name="horainicioseccion")
+                            .col-md-6
+                                .form-group
+                                    label(for="horaterminoseccion") Hora de Termino Diaria
+                                    input.form-control#horaterminoseccion(type="time", placeholder="Ingrese la hora de termino diaria de la Sección", name="horaterminoseccion")
+                            .col-md-6
+                                .form-group
+                                    label(for="cursoseccion") Curso
+                                    select.form-control#cursoseccion(name="cursoseccion")
+                            .col-md-6
+                                .form-group
+                                    label(for="carreraseccion") Carrera
+                                    select.form-control#carreraseccion(name="carreraseccion")
+                            .col-md-6
+                                .form-group
+                                    label(for="mayaseccion") Maya
+                                    select.form-control#mayaseccion(name="mayaseccion")
+                        .row
+                            .col-md-12
+                                .form-group
+                                    button.btn.btn-default(type="submit") Ingresar Sección
+                                    
+    #mostrarseccion.tablecontent
+        .container
+            .row
+                .col-md-12
+                    h2.text-center Secciones
+            .row
+                .col-md-12
+                    .table-responsive
+                        table.table
+                            thead
+                                tr
+                                    th Código
+                                    th Nombre
+                                    th Semestre
+                                    th Hora de Inicio Diaria
+                                    th Hora de Termino Diaria
+                                    th Curso
+                                    th Carrera
+                                    th Maya
+                                    th Acciones
+                            tbody#tablesecciones
+
+block scripts
+    script(type="text/javascript", src="/js/secciones.js")

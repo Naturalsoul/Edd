@@ -1,0 +1,83 @@
+extends ./_layout
+
+block content
+    #ingresarasignatura.formcontent
+        .container
+            .row
+                .col-md-12
+                    h2.text-center Ingresar Asignatura
+            .row
+                .col-md-12
+                    form#form-asignatura
+                        .row
+                            .col-md-6
+                                .form-group
+                                    label(for="codigoasignatura") Código
+                                    input.form-control#codigoasignatura(type="text", placeholder="Ingrese el código de la Asignatura", name="codigoasignatura")
+                            .col-md-6
+                                .form-group
+                                    label(for="nombreasignatura") Nombre
+                                    input.form-control#cantidadasignaturas(type="text", placeholder="Ingrese el nombre de la Ssignatura", name="nombreasignatura")
+                            .col-md-6
+                                .form-group
+                                    label(for="especialidadasignatura") Especialidad
+                                    select.form-control#especialidadasignatura(name="especialidadasignatura")
+                                        option(value="0") Sí
+                                        option(value="1") No
+                            .col-md-6
+                                .form-group
+                                    label(for="cantidadhorasasignatura") Cantidad de Horas
+                                    input.form-control#cantidadhorasasignatura(type="number", placeholder="Ingrese la cantidad de horas de la Asignatura", name="cantidadhorasasignatura")
+                            .col-md-6
+                                .form-group
+                                    label(for="equipamientoasignatura") Equipamiento Tecnológico Necesario
+                                    select.form-control#equipamientoasignatura(name="equipamientoasignatura")
+                                        option(value="0") Laboratorio
+                                        option(value="1") Sala
+                                        option(value="2") Leica
+                                        option(value="3") Taller
+                            .col-md-6
+                                .form-group
+                                    label(for="semestreasignatura") Semestre
+                                    select.form-control#semestreasignatura(name="semestreasignatura")
+                                        option(value="0") 1º Semestre
+                                        option(value="1") 2º Semestre
+                                        option(value="2") 3º Semestre
+                                        option(value="3") 4º Semestre
+                                        option(value="4") 5º Semestre
+                                        option(value="5") 6º Semestre
+                                        option(value="6") 7º Semestre
+                                        option(value="7") 8º Semestre
+                                        option(value="8") 9º Semestre
+                            .col-md-6
+                                .form-group
+                                    label(for="mayaasignatura") Maya
+                                    select.form-control#mayaasignatura(name="mayaasignatura")
+                        .row
+                            .col-md-12
+                                .form-group
+                                    button.btn.btn-default(type="submit") Ingresar Asignatura
+                                    
+    #mostrarasignatura.tablecontent
+        .container
+            .row
+                .col-md-12
+                    h2.text-center Asignaturas
+            .row
+                .col-md-12
+                    .table-responsive
+                        table.table
+                            thead
+                                tr
+                                    th Código
+                                    th Nombre
+                                    th Especialidad
+                                    th Cantidad de Horas
+                                    th Equipamiento Tecnológico
+                                    th Semestre
+                                    th Maya
+                                    th Acciones
+                            tbody#tableasignaturas
+
+block scripts
+    script(type="text/javascript", src="/js/asignaturas.js")
