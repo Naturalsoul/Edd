@@ -1,0 +1,52 @@
+extends ./_layout
+
+block content
+    #modificarusuario.formcontent
+        .container
+            .row
+                .col-md-12
+                    h2.text-center Modificar Usuario
+            .row
+                .col-md-12
+                    form#form-modusuario
+                        .row
+                            .col-md-6
+                                .form-group
+                                    label(for="modcorreousuario") Correo Electrónico
+                                    input.form-control#modcorreousuario(type="text", placeholder="Ingrese el nuevo Correo Electrónico del Usuario", name="modcorreousuario")
+                            .col-md-6
+                                .form-group
+                                    label(for="modcontrasenausuario") Contraseña
+                                    input.form-control#modcontrasenausuario(type="password", placeholder="Ingrese la nueva Contraseña del Usuario", name="modcontrasenausuario")
+                            .col-md-6
+                                .form-group
+                                    label(for="modnombreusuario") Nombre
+                                    input.form-control#modnombreusuario(type="text", placeholder="Ingrese el nuevo Nombre del Usuario", name="modnombreusuario")
+                            .col-md-6
+                                .form-group
+                                    label(for="modareausuario") Área
+                                    select.form-control#modareausuario(name="modareausuario")
+                        .row
+                            .col-md-12
+                                .form-group
+                                    button.btn.btn-default(type="submit") Modificar Usuario
+                                    
+    #modmostrarusuarios.tablecontent
+        .container
+            .row
+                .col-md-12
+                    h2.text-center Usuarios
+            .row
+                .col-md-12
+                    .table-responsive
+                        table.table
+                            thead
+                                tr
+                                    th Correo Electrónico
+                                    th Nombre
+                                    th Área
+                                    th Acciones
+                            tbody#modtableusuarios
+
+block scripts
+    script(type="text/javascript", src="/js/modusuarios.js")

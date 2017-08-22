@@ -1,0 +1,26 @@
+extends ./_layout.pug
+
+block content
+    #registroactividades.formcontent
+        .container
+            .row
+                .col-md-12
+                    h2.text-center Registro de Actividades
+            .row
+                .col-md-12
+                    label(for="busquedaregistroactividades") Busqueda en el Registro
+                    input.form-control#busquedaregistroactividades(type="text", placeholder="'27 de Agosto', 'Nombre de usuario', 'Creó', 'Modificó'...", name="busquedaregistroactividades")
+            .row
+                .col-md-12
+                    .table-responsive
+                        table.table
+                            thead
+                                tr
+                                    td Usuario
+                                    td Acción
+                                    td Fecha y Hora
+                                    td Acciones
+                            tbody#tableregistroactividades
+                            
+block scripts
+    script(type="text/javascript", src="/js/registroactividades.js")

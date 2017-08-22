@@ -8,11 +8,23 @@ block content
 					h2.text-center Planificar Horarios
 			.row
 				.col-md-12
-					label(for="area")
+					label(for="area") Área
 					select.form-control#planificararea(name="planificararea")
 				.col-md-12
-					label(for="carrera")
+					label(for="carrera") Carrera
 					select.form-control#planificarcarrera(name="planificarcarrera")
+				.col-md-12
+					label(for="semestreplanificar") Semestre
+					select.form-control#semestreplanificar(name="semestreplanificar")
+						option(value="0") 1º Semestre
+						option(value="1") 2º Semestre
+						option(value="2") 3º Semestre
+						option(value="3") 4º Semestre
+						option(value="4") 5º Semestre
+						option(value="5") 6º Semestre
+						option(value="6") 7º Semestre
+						option(value="7") 8º Semestre
+						option(value="8") 9º Semestre
 				.col-md-12
 					br
 					button.btn.btn-default#btnplanificar(data-toggle="modal" data-target="#modalplanificar") Planificar Horarios
