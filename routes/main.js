@@ -124,10 +124,10 @@ router.get("/alldocentes", (req, res) => {
 	})
 })
 
-router.post("/indocente", multer({ dest: "./model/disponibilidades/"}).single("disponibilidaddocente"), (req, res) => {
+router.post("/indocente", multer({ dest: "./model/disponibilidad/docentes"}).single("disponibilidaddocente"), (req, res) => {
 	console.dir(req.body)
 	DocenteModel.inDocente({
-		rut: req.body.rutdocente,
+		run: req.body.rutdocente,
 		nombre: req.body.nombredocente,
 		prioridad: req.body.prioridaddocente,
 		disponibilidad: req.file,

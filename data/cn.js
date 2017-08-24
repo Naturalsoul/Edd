@@ -32,4 +32,26 @@ cn.Insert = (sql, next) => {
 	})
 }
 
+cn.Update = (sql, next) => {
+	connection.query(sql, (err, results, fields) => {
+		if (err) {
+			console.log(err)
+			next(false)
+		} else {
+			next(results)
+		}
+	})
+}
+
+cn.Remove = (sql, next) => {
+	connection.query(sql, (err, results, fields) => {
+		if (err) {
+			console.log(err)
+			next(false)
+		} else {
+			next(results)
+		}
+	})
+}
+
 module.exports = cn

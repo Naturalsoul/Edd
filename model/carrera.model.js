@@ -22,4 +22,28 @@ model.inCarrera = (codigo, nombre, area, next) => {
 	})
 }
 
+model.updateCarrera = (codigo, nombre, area, next) => {
+	var sql = "UPDATE carrera SET nombre = '" + nombre + "', codigo_area = '" + area + "' WHERE codigo = '" + codigo + "'"
+	
+	cn.Update(sql, (results) => {
+		if (results) {
+			next(results)
+		} else {
+			next(false)
+		}
+	})
+}
+
+model.removeCarrera = (codigo, next) => {
+	var sql = "DELETE FROM carrera WHERE codigo = '" + codigo + "'"
+	
+	cn.Remove(sql, (results) => {
+		if (results) {
+			next(results)
+		} else {
+			next(false)
+		}
+	})
+}
+
 module.exports = model

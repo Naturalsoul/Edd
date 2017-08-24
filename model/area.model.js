@@ -34,4 +34,28 @@ model.inArea = (codigo, nombre, next) => {
 	})
 }
 
+model.updateArea = (codigo, nombre, next) => {
+	var sql = "UPDATE area SET nombre = '" + nombre + "' WHERE codigo = '" + codigo + "'"
+	
+	cn.Update(sql, (results) => {
+		if (results) {
+			next(results)
+		} else {
+			next(false)
+		}
+	})
+}
+
+model.removeArea = (codigo, next) => {
+	var sql = "DELETE FROM area WHERE codigo = '" + codigo + "'"
+	
+	cn.Remove(sql, (results) => {
+		if (results) {
+			next(results)
+		} else {
+			next(false)
+		}
+	})
+}
+
 module.exports = model

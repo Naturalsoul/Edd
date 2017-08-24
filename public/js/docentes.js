@@ -19,7 +19,7 @@ $(document).ready(() => {
             
             data.forEach((e) => {
                 
-                table += "<tr><td>" + e.rut + "</td><td>" + e.nombre + "</td><td>" + e.prioridad + "</td>"
+                table += "<tr><td>" + e.run + "</td><td>" + e.nombre + "</td><td>" + e.prioridad + "</td>"
                 table += "<td><a id='disponibilidad-" + i + "' download='Disponibilidad - " + e.nombre + ".csv' type='text/csv'>Disponibilidad</a></td>"
                 table += "<td>" + e.area + "</td><td>" + e.perfil + "</td><td> Acciones </td></tr>"
                 

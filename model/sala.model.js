@@ -27,4 +27,29 @@ model.inSala = (data, next) => {
     })
 }
 
+model.updateSala = (data, next) => {
+    var sql = "UPDATE FROM sala SET codigo = '" + data.codigo + "', capacidad_alumnos = '" + data.capacidad_alumnos + "', equipamiento_tecnologico = '"
+        sql += data.equipamiento_tecnologico + "', disponibilidad = '" + data.disponibilidad + "' WHERE codigo = '" + data.codigo + "'"
+        
+    cn.Update(sql, (res) => {
+        if (res) {
+            next(res)
+        } else {
+            next(false)
+        }
+    })
+}
+
+model.removeSala = (codigo, next) => {
+    var sql = "DELETE FROM sala WHERE codigo = '" + codigo + "'"
+    
+    cn.Remove(sql, (res) => {
+        if (res) {
+            next(res)
+        } else {
+            next(false)
+        }
+    })
+}
+
 module.exports = model
