@@ -1,14 +1,23 @@
 var cn = require("../data/cn")
+var log = require("./registroactividades.model.js")
 
 var model = {}
 
-model.getMayas = (next) => {
+model.getMayas = (data, next) => {
     var sql = "SELECT m.codigo AS codigo, m.cantidad_asignaturas AS cantidad_asignaturas, c.nombre AS nombre_carrera FROM maya AS m "
         sql += "LEFT JOIN carrera AS c ON m.codigo_carrera = c.codigo"
         
     cn.Ask(sql, (res) => {
         if (res) {
-            next(res)
+            data.accion = "consultó por todos los registros de Maya"
+            
+            log.inRegistro(data, (res) => {
+                if (res) {
+                    next(res)
+                } else {
+                    next(false)
+                }
+            })
         } else {
             next(false)
         }
@@ -20,7 +29,15 @@ model.inMaya = (data, next) => {
     
     cn.Insert(sql, (res) => {
         if (res) {
-            next(res)
+            data.accion = "ingresó un nuevo registro con el Código " + data.codigo + " en Maya"
+            
+            log.inRegistro(data, (res) => {
+                if (res) {
+                    next(res)
+                } else {
+                    next(false)
+                }
+            })
         } else {
             next(false)
         }
@@ -32,19 +49,35 @@ model.updateMaya = (data, next) => {
     
     cn.Update(sql, (res) => {
         if (res) {
-            next(res)
+            data.accion = "actualizó el registro con Código " + data.codigo + " en Maya"
+            
+            log.inRegistro(data, (res) => {
+                if (res) {
+                    next(res)
+                } else {
+                    next(false)
+                }
+            })
         } else {
             next(false)
         }
     })
 }
 
-model.removeMaya = (codigo, next) => {
-    var sql = "DELETE FROM maya WHERE codigo = '" + codigo + "'"
+model.removeMaya = (data, next) => {
+    var sql = "DELETE FROM maya WHERE codigo = '" + data.codigo + "'"
     
     cn.Remove(sql, (res) => {
         if (res) {
-            next(res)
+            data.accion = "eliminó el registro con el Código " + data.codigo + " en Maya"
+            
+            log.inRegistro(data, (res) => {
+                if (res) {
+                    next(res)
+                } else {
+                    next(false)
+                }
+            })
         } else {
             next(false)
         }

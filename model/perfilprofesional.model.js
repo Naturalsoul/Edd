@@ -3,24 +3,40 @@ var log = require("./registroactividades.model.js")
 
 var model = {}
 
-model.getPerfiles = (next) => {
+model.getPerfiles = (data, next) => {
     var sql = "SELECT * FROM perfilprofesional"
     
     cn.Ask(sql, (results) => {
         if (results) {
-            next(results)
+            data.accion = "consultó por todos los registros de Perfiles Profesionales"
+            
+            log.inRegistro(data, (res) => {
+                if (res) {
+                    next(res)
+                } else {
+                    next(false)
+                }
+            })
         } else {
             next(false)
         }
     })
 }
 
-model.inPerfil = (perfil, next) => {
-    var sql = "INSERT INTO perfilprofesional (perfil) VALUE('" + perfil + "')"
+model.inPerfil = (data, next) => {
+    var sql = "INSERT INTO perfilprofesional (perfil) VALUE('" + data.perfil + "')"
     
     cn.Insert(sql, (results) => {
         if (results) {
-            next(results)
+            data.accion = "ingresó un nuevo registro en Perfiles Profesionales"
+            
+            log.inRegistro(data, (res) => {
+                if (res) {
+                    next(res)
+                } else {
+                    next(false)
+                }
+            })
         } else {
             next(false)
         }
@@ -53,7 +69,7 @@ model.removePerfil = (data, next) => {
     
     cn.Remove(sql, (res) => {
         if (res) {
-            var accion = "eliminó el registro Nº " + data.id + " de Perfiles Profesionales"
+            data.accion = "eliminó el registro Nº " + data.id + " de Perfiles Profesionales"
             
             log.inRegistro(data, (res) => {
                 if (res) {

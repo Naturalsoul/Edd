@@ -1,13 +1,22 @@
 var cn = require("../data/cn")
+var log = require("./registroactividades.model.js")
 
 var model = {}
 
-model.getCursos = (next) => {
+model.getCursos = (data, next) => {
     var sql = "SELECT * FROM curso"
     
     cn.Ask(sql, (res) => {
         if (res) {
-            next(res)
+            data.accion = "consultó por todos los registros de Curso"
+            
+            log.inRegistro(data, (res) => {
+                if (res) {
+                    next(res)
+                } else {
+                    next(false)
+                }
+            })
         } else {
             next(false)
         }
@@ -19,7 +28,15 @@ model.inCurso = (data, next) => {
     
     cn.Insert(sql, (res) => {
         if (res) {
-            next(res)
+            data.accion = "ingresó un registro con el Código " + data.codigo + " en Curso"
+            
+            log.inRegistro(data, (res) => {
+                if (res) {
+                    next(res)
+                } else {
+                    next(false)
+                }
+            })
         } else {
             next(false)
         }
@@ -31,19 +48,35 @@ model.updateCurso = (data, next) => {
     
     cn.Update(sql, (res) => {
         if (res) {
-            next(res)
+            data.accion = "actualizó el registro con el Código " + data.codigo + " en Curso"
+            
+            log.inRegistro(data, (res) => {
+                if (res) {
+                    next(res)
+                } else {
+                    next(false)
+                }
+            })
         } else {
             next(false)
         }
     })
 }
 
-model.removeCurso = (codigo, next) => {
-    var sql = "DELETE FROM curso WHERE codigo = '" + codigo + "'"
+model.removeCurso = (data, next) => {
+    var sql = "DELETE FROM curso WHERE codigo = '" + data.codigo + "'"
     
     cn.Remove(sql, (res) => {
         if (res) {
-            next(res)
+            data.accion = "eliminó el registro con el Código " + data.codigo + " en Curso"
+            
+            log.inRegistro(data, (res) => {
+                if (res) {
+                    next(res)
+                } else {
+                    next(false)
+                }
+            })
         } else {
             next(false)
         }
