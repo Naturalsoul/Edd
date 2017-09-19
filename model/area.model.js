@@ -12,7 +12,7 @@ model.getAreas = (data, next) => {
 			
 			log.inRegistro(data, (res) => {
 				if (res) {
-					next(res)
+					next(results)
 				} else {
 					next(false)
 				}
@@ -32,7 +32,7 @@ model.getAll = (data, next) => {
 			
 			log.inRegistro(data, (res) => {
 				if (res) {
-					next(res)
+					next(results)
 				} else {
 					next(false)
 				}

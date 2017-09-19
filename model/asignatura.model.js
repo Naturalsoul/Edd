@@ -6,13 +6,13 @@ var model = {}
 model.getAsignaturas = (data, next) => {
     var sql = "SELECT * FROM asignatura"
     
-    cn.Ask(sql, (res) => {
-        if (res) {
+    cn.Ask(sql, (results) => {
+        if (results) {
             data.accion = "consultó por todos los registros de Asignatura"
             
             log.inRegistro(data, (res) => {
                 if (res) {
-                    next(res)
+                    next(results)
                 } else {
                     next(false)
                 }
@@ -48,7 +48,7 @@ model.inAsignatura = (data, next) => {
 model.updateAsignatura = (data, next) => {
     var sql = "UPDATE asignatura SET nombre = '" + data.nombre + "', especialidad = '" + data.especialidad
     sql += "', cantidad_horas = '" + data.cantidad_horas + "', equipamiento = '" + data.equipamiento + "', semestre = '" + data.semestre
-    sql += "', codigo_maya = '" + data.codigo_maya + " WHERE codigo = '" + data.codigo + "'"
+    sql += "', codigo_maya = '" + data.codigo_maya + "' WHERE codigo = '" + data.codigo + "'"
     
     cn.Update(sql, (res) => {
         if (res) {

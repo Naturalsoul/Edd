@@ -4,16 +4,16 @@ var log = require("./registroactividades.model.js")
 var model = {}
 
 model.getMayas = (data, next) => {
-    var sql = "SELECT m.codigo AS codigo, m.cantidad_asignaturas AS cantidad_asignaturas, c.nombre AS nombre_carrera FROM maya AS m "
+    var sql = "SELECT m.codigo AS codigo, m.cantidad_asignaturas AS cantidad_asignaturas, m.codigo_carrera AS codigo_carrera, c.nombre AS nombre_carrera FROM maya AS m "
         sql += "LEFT JOIN carrera AS c ON m.codigo_carrera = c.codigo"
         
-    cn.Ask(sql, (res) => {
-        if (res) {
+    cn.Ask(sql, (results) => {
+        if (results) {
             data.accion = "consultó por todos los registros de Maya"
             
             log.inRegistro(data, (res) => {
                 if (res) {
-                    next(res)
+                    next(results)
                 } else {
                     next(false)
                 }
@@ -45,7 +45,7 @@ model.inMaya = (data, next) => {
 }
 
 model.updateMaya = (data, next) => {
-    var sql = "UPDATE FROM maya SET codigo = '" + data.codigo + "', cantidad_asignaturas = '" + data.cantidad_asignaturas + "', codigo_carrera = '" + data.codigo_carrera + "', WHERE codigo = '" + data.codigo + "'"
+    var sql = "UPDATE maya SET codigo = '" + data.codigo + "', cantidad_asignaturas = '" + data.cantidad_asignaturas + "', codigo_carrera = '" + data.codigo_carrera + "' WHERE codigo = '" + data.codigo + "'"
     
     cn.Update(sql, (res) => {
         if (res) {

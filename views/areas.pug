@@ -6,7 +6,7 @@ block content
         .container
             .row
                 .col-md-12
-                    h2.text-center Ingresar Áreas
+                    h2.text-center Áreas
             .row
                 .col-md-12
                     form#form-area
@@ -21,7 +21,7 @@ block content
                                     input.form-control#nombre-area(type="text", placeholder="Nombre del Área", name="nombrearea")
                         .row
                             .col-md-12
-                                .form-group
+                                .form-group#btnupdateinsertarea
                                     button.btn.btn-default#btningresararea(type="button") Ingresar Área
                                     
     #mostrarareas.tablecontent
@@ -39,4 +39,6 @@ block content
                                     th Nombres
                                     th Acciones
                             tbody#tablaareas
-        
+
+block scripts
+    script(type="text/javascript", src="/js/areas.js")

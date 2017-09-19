@@ -5,7 +5,7 @@ block content
         .container
             .row
                 .col-md-12
-                    h2.text-center Ingresar Asignatura
+                    h2.text-center Asignatura
             .row
                 .col-md-12
                     form#form-asignatura
@@ -17,13 +17,13 @@ block content
                             .col-md-6
                                 .form-group
                                     label(for="nombreasignatura") Nombre
-                                    input.form-control#cantidadasignaturas(type="text", placeholder="Ingrese el nombre de la Ssignatura", name="nombreasignatura")
+                                    input.form-control#nombreasignatura(type="text", placeholder="Ingrese el nombre de la Asignatura", name="nombreasignatura")
                             .col-md-6
                                 .form-group
                                     label(for="especialidadasignatura") Especialidad
                                     select.form-control#especialidadasignatura(name="especialidadasignatura")
-                                        option(value="0") Sí
-                                        option(value="1") No
+                                        option(value="1") Sí
+                                        option(value="0") No
                             .col-md-6
                                 .form-group
                                     label(for="cantidadhorasasignatura") Cantidad de Horas
@@ -55,14 +55,14 @@ block content
                                     select.form-control#mayaasignatura(name="mayaasignatura")
                         .row
                             .col-md-12
-                                .form-group
-                                    button.btn.btn-default(type="submit") Ingresar Asignatura
+                                .form-group#btnupdateinsertasignatura
+                                    button.btn.btn-default#btningresarasignatura(type="button") Ingresar Asignatura
                                     
     #mostrarasignatura.tablecontent
         .container
             .row
                 .col-md-12
-                    h2.text-center Asignaturas
+                    h2.text-center Listado de Asignaturas
             .row
                 .col-md-12
                     .table-responsive

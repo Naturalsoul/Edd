@@ -1,9 +1,9 @@
 $(document).ready(() => {
 	checkSessions()
-	getAreas()
-	getAreasForModel()
-	getCarreras()
-	getCarrerasPlanificar()
+	//getAreas()
+	//getAreasForModel()
+	//getCarreras()
+	//getCarrerasPlanificar()
 
 	$("#login-submit").on("click", () => {
 		$.ajax({
@@ -146,7 +146,7 @@ $(document).ready(() => {
 			$("#tablaareas").html(table)
 		}
 	}
-	
+	/*
 	$("#btningresararea").on("click", () => {
 		$.ajax({
 			type: "POST",
@@ -163,4 +163,5 @@ $(document).ready(() => {
 			}
 		})
 	})
+	*/
 })
