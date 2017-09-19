@@ -12,7 +12,7 @@ model.getPerfiles = (data, next) => {
             
             log.inRegistro(data, (res) => {
                 if (res) {
-                    next(res)
+                    next(results)
                 } else {
                     next(false)
                 }

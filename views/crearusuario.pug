@@ -1,0 +1,56 @@
+extends ./_layout.pug
+
+block content
+	#ingresarusuario.formcontent
+		.container
+			.row
+				.col-md-12
+					h2.text-center Usuarios
+			.row
+				.col-md-12
+					form#form-usuario
+						.row
+							.col-md-6
+								.form-group
+									label(for="correousuario") Correo
+									input.form-control#correousuario(type="text", placeholder="Correo del Usuario", name="correousuario")
+							.col-md-6
+							    .form-group
+							        label(for="passusuario") Contraseña
+							        input.form-control#passusuario(type="password", placeholder="Contraseña del usuario", name="passusuario")
+							.col-md-6
+								.form-group
+									label(for="nombreusuario") Nombre
+									input.form-control#nombreusuario(type="text", placeholder="Nombre del Usuario", name="nombreusuario")
+							.col-md-6
+							    .form-group
+							        label(for="institucionusuario") Institución
+							        input.form-control#institucionusuario(type="text", placeholder="Institución del usuario", name="institucionusuario")
+						.row
+							.col-md-6
+								.form-group
+									label(for="areausuario") Área
+									select.form-control#areausuario(name="areausuario")
+							.col-md-6
+								.form-group#btnupdateinsertusuario
+									button.btn.btn-default#btningresarusuario(type="button") Ingresar Usuario
+
+	#mostrarusuarios.tablecontent
+		.container
+			.row
+				.col-md-12
+					h2.text-center Listado de Usuario
+			.row
+				.col-md-12
+					.table-responsive
+						table.table
+							thead
+								tr
+    								th Correos
+    								th Nombres
+    								th Institución
+    								th Area
+							tbody#tablausuarios
+
+block scripts
+	script(type="text/javascript", src="/js/usuarios.js")

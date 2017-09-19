@@ -1,33 +1,33 @@
 extends ./_layout.pug
 
 block content
-	#ingresarcarrera
+	#ingresarcarrera.formcontent
 		.container
 			.row
 				.col-md-12
-					h2.text-center Ingresar Carreras
+					h2.text-center Carreras
 			.row
 				.col-md-12
-					form#carreras-form
+					form#form-carrera
 						.row
 							.col-md-6
 								.form-group
-									label(for="codigo") Código
-									input.form-control#codigo-carrera(type="text", placeholder="Código de Carrera", name="codigocarrera")
+									label(for="codigocarrera") Código
+									input.form-control#codigocarrera(type="text", placeholder="Código de Carrera", name="codigocarrera")
 							.col-md-6
 								.form-group
-									label(for="nombre") Nombre
-									input.form-control#nombre-carrera(type="text", placeholder="Nombre de la Carrera", name="nombrecarrera")
+									label(for="nombrecarrera") Nombre
+									input.form-control#nombrecarrera(type="text", placeholder="Nombre de la Carrera", name="nombrecarrera")
 						.row
 							.col-md-6
 								.form-group
-									label(for="area") Área
-									select.form-control#area(name="area")
+									label(for="areacarrera") Área
+									select.form-control#areacarrera(name="areacarrera")
 							.col-md-6
-								.form-group
-									button.btn.btn-default#ingresar-carrera(type="button") Ingresar Carrera
+								.form-group#btnupdateinsertcarrera
+									button.btn.btn-default#btningresarcarrera(type="button") Ingresar Carrera
 
-	#mostrarcarreras
+	#mostrarcarreras.tablecontent
 		.container
 			.row
 				.col-md-12
@@ -38,7 +38,11 @@ block content
 						table.table
 							thead
 								tr
-								th Códigos
-								th Nombres
-								th Acciones
+									th Códigos
+									th Nombres
+									th Area
+									th Acciones
 							tbody#tablacarreras
+
+block scripts
+	script(type="text/javascript", src="/js/carreras.js")

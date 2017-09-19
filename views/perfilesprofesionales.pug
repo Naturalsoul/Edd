@@ -6,7 +6,7 @@ block content
         .container
             .row
                 .col-md-12
-                    h2.text-center Ingresar Perfil Profesional
+                    h2.text-center Perfil Profesional
             .row
                 .col-md-12
                     form#form-perfilprofesional
@@ -14,7 +14,7 @@ block content
                             .col-md-6
                                 label(for="perfilprofesional") Perfil Profesional
                                 textarea.form-control#perfilprofesional(maxlength="200", name="perfilprofesional")
-                            .col-md-6
+                            .col-md-6#btnupdateinsertperfil
                                 button.btn.btn-default#btningresarperfilprofesional(type="button") Ingresar Perfil Profesional
     
     #mostrarperfilesprofesionales.tablecontent
@@ -34,5 +34,4 @@ block content
                             tbody#tablaperfilesprofesionales
     
 block scripts
-
     script(type="text/javascript", src="/js/perfilesprofesionales.js")

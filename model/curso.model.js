@@ -4,15 +4,16 @@ var log = require("./registroactividades.model.js")
 var model = {}
 
 model.getCursos = (data, next) => {
-    var sql = "SELECT * FROM curso"
+    var sql = "SELECT c.codigo AS codigo, c.tamano AS tamano, s.nombre AS nombre_seccion FROM curso AS c "
+    sql += "LEFT JOIN seccion AS s ON s.codigo_curso = c.codigo"
     
-    cn.Ask(sql, (res) => {
-        if (res) {
+    cn.Ask(sql, (results) => {
+        if (results) {
             data.accion = "consultó por todos los registros de Curso"
             
             log.inRegistro(data, (res) => {
                 if (res) {
-                    next(res)
+                    next(results)
                 } else {
                     next(false)
                 }
@@ -44,7 +45,7 @@ model.inCurso = (data, next) => {
 }
 
 model.updateCurso = (data, next) => {
-    var sql = "UPDATE FROM curso SET codigo = '" + data.codigo + "', tamano = '" + data.tamano + "' WHERE codigo = '" + data.codigo + "'"
+    var sql = "UPDATE curso SET tamano = '" + data.tamano + "' WHERE codigo = '" + data.codigo + "'"
     
     cn.Update(sql, (res) => {
         if (res) {

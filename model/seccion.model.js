@@ -5,15 +5,15 @@ var model = {}
 
 model.getSecciones = (data, next) => {
     var sql = "SELECT s.codigo AS codigo, s.nombre AS nombre, s.semestre AS semestre, s.hora_inicio AS hora_inicio, s.hora_termino AS hora_termino, "
-    sql += "s.codigo_curso AS codigo_curso, c.nombre AS carrera, s.codigo_maya AS codigo_maya FROM seccion AS s LEFT JOIN carrera AS c ON s.codigo_carrera = c.codigo"
+    sql += "s.codigo_curso AS codigo_curso, c.nombre AS carrera, s.codigo_carrera AS codigo_carrera, s.codigo_maya AS codigo_maya FROM seccion AS s LEFT JOIN carrera AS c ON s.codigo_carrera = c.codigo"
     
-    cn.Ask(sql, (res) => {
-        if (res) {
+    cn.Ask(sql, (results) => {
+        if (results) {
             data.accion = "consultó por todos los registros de Sección"
             
             log.inRegistro(data, (res) => {
                 if (res) {
-                    next(res)
+                    next(results)
                 } else {
                     next(false)
                 }

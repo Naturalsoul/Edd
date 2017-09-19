@@ -82,7 +82,7 @@ router.post("/incarrera", (req, res) => {
 			correo_usuario: req.session.email,
 			codigo: req.body.codigocarrera,
 			nombre: req.body.nombrecarrera,
-			area: req.body.area
+			area: req.body.areacarrera
 		}
 		
 		CarreraModel.inCarrera(data, (results) => {
@@ -103,7 +103,7 @@ router.put("/upcarrera", (req, res) => {
 			correo_usuario: req.session.email,
 			codigo: req.body.codigocarrera,
 			nombre: req.body.nombrecarrera,
-			area: req.body.area
+			area: req.body.areacarrera
 		}
 		
 		CarreraModel.updateCarrera(data, (results) => {
@@ -122,7 +122,7 @@ router.delete("/delcarrera", (req, res) => {
 	if (typeof req.session.email != "undefined") {
 		var data = {
 			correo_usuario: req.session.email,
-			codigo: 1 // Se debe agregar el código de la carrera a eliminar
+			codigo: req.body.codigo
 		}
 		
 		CarreraModel.removeCarrera(data, (results) => {
@@ -274,6 +274,45 @@ router.post("/inperfiles", (req, res) => {
 	}
 })
 
+router.put("/upperfil", (req, res) => {
+	if (typeof req.session.email != "undefined") {
+		var data = {
+			correo_usuario: req.session.email,
+			id: req.body.id,
+			perfil: req.body.perfilprofesional
+		}
+		
+		PerfilProfesionalModel.updatePerfil(data, (results) => {
+			if (results) {
+				res.status(200).send("Perfil Profesional Actualizado!")
+			} else {
+				res.status(403).send("Error al actualizar el Perfil Profesional.")
+			}
+		})
+	} else {
+		res.render("index")
+	}
+})
+
+router.delete("/delperfil", (req, res) => {
+	if (typeof req.session.email != "undefined") {
+		var data = {
+			correo_usuario: req.session.email,
+			id: req.body.id
+		}
+		
+		PerfilProfesionalModel.removePerfil(data, (results) => {
+			if (results) {
+				res.status(200).send("Perfil Profesional Eliminado!")
+			} else {
+				res.status(403).send("Error al eliminar el Perfil Profesional.")
+			}
+		})
+	} else {
+		res.render("index")
+	}
+})
+
 router.get("/docentes", (req, res) => {
 	if (typeof req.session.email != "undefined") {
 		res.render("docentes")	
@@ -405,6 +444,14 @@ router.delete("/delasignatura", (req, res) => {
 	}
 })
 
+router.get("/cursos", (req, res) => {
+	if (typeof req.session.email != "undefined") {
+		res.render("cursos")
+	} else {
+		res.render("index")
+	}
+})
+
 router.get("/getcursos", (req, res) => {
 	if (typeof req.session.email != "undefined") {
 		var data = {
@@ -463,7 +510,7 @@ router.delete("/delcurso", (req, res) => {
 	if (typeof req.session.email != "undefined") {
 		var data = {
 			correo_usuario: req.session.email,
-			codigo: 1 // Se debe ingresar el código del Curso
+			codigo: req.body.codigo
 		}
 		
 		CursoModel.removeCurso(data, (results) => {
@@ -639,7 +686,7 @@ router.delete("/delseccion", (req, res) => {
 	if (typeof req.session.email != "undefined") {
 		var data = {
 			correo_usuario: req.session.email,
-			codigo: 1 // Se debe ingresar el código de la Sección.
+			codigo: req.body.codigo
 		}
 		
 		SeccionModel.removeSeccion(data, (results) => {

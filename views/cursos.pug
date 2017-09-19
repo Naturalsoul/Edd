@@ -5,7 +5,7 @@ block content
         .container
             .row
                 .col-md-12
-                    h2.text-center Ingresar Curso
+                    h2.text-center Cursos
             .row
                 .col-md-12
                     form#form-curso
@@ -20,14 +20,14 @@ block content
                                     input.form-control#tamanocurso(type="number", placeholder="Ingrese la cantidad Máxima de alumnos del Curso", name="tamanocurso")
                         .row
                             .col-md-12
-                                .form-group
-                                    button.btn.btn-default(type="submit") Ingresar Curso
+                                .form-group#btnupdateinsertcurso
+                                    button.btn.btn-default#btningresarcurso(type="button") Ingresar Curso
                                     
     #mostrarcurso.tablecontent
         .container
             .row
                 .col-md-12
-                    h2.text-center Cursos
+                    h2.text-center Listado de Cursos
             .row
                 .col-md-12
                     .table-responsive
@@ -36,6 +36,7 @@ block content
                                 tr
                                     th Código
                                     th Tamaño Máximo
+                                    th Sección
                                     th Acciones
                             tbody#tablecursos
 

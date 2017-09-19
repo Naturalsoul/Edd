@@ -4,7 +4,8 @@ var log = require("./registroactividades.model.js")
 var model = {}
 
 model.getCarreras = (data, next) => {
-	var sql = "SELECT codigo, nombre FROM carrera WHERE codigo_area = '" + data.area + "'"
+	var sql = "SELECT c.codigo AS codigo, c.nombre AS nombre, c.codigo_area AS codigo_area, a.nombre AS nombre_area FROM carrera AS c "
+		sql += "LEFT JOIN area AS a ON c.codigo_area = a.codigo WHERE codigo_area = '" + data.area + "'"
 
 	cn.Ask(sql, (results) => {
 		if (results) {
