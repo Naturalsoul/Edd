@@ -1,11 +1,11 @@
 $(document).ready(() => {
-    getUsuarios()
     getAreas()
+    getUsuarios()
     
     function getUsuarios () {
         $.ajax({
             type: "GET",
-            url: "/getusuarios",
+            url: "/getinformacionpersonal",
             contentType: "application/json",
             dataType: "json",
             success: inResults
@@ -15,10 +15,14 @@ $(document).ready(() => {
             var html = ""
             
             data.forEach((e) => {
-                html += "<tr><td>" + e.correo + "</td><td>" + e.nombre + "</td><td>" + e.institucion + "</td><td>" + e.nombre_area + "</td></tr>"
+                html += "<tr><td>" + e.correo + "</td><td>" + e.nombre + "</td><td>" + e.institucion + "</td><td>" + e.codigo_area + "</td></tr>"
+                $("#correousuario").val(e.correo)
+                $("#nombreusuario").val(e.nombre)
+                $("#institucionusuario").val(e.institucion)
+                $("#areausuario").val(e.codigo_area)
             })
             
-            $("#tablausuarios").html(html)
+            $("#tableinformacionpersonal").html(html)
         }
     }
     
@@ -42,10 +46,10 @@ $(document).ready(() => {
         }
     }
     
-    $("#btningresarusuario").on("click", () => {
+    $("#btningresarinformacionpersonal").on("click", () => {
         $.ajax({
-            type: "POST",
-            url: "/inusuario",
+            type: "PUT",
+            url: "/upusuario",
             data: $("#form-usuario").serialize(),
             success: (data) => {
                 alert(data)

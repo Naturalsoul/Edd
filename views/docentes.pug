@@ -9,7 +9,7 @@ block content
                     h2.text-center Ingresar Docentes
             .row
                 .col-md-12
-                    form#form-docente(method="POST", enctype="multipart/form-data", action="/indocente")
+                    form#form-docente
                         .row
                             .col-md-6
                                 .form-group
@@ -26,9 +26,9 @@ block content
                                     input.form-control#prioridaddocente(type="number", name="prioridaddocente")
                             .col-md-6
                                 .form-group
-                                    label(for="disponibilidaddocente") Disponibilidad
-                                    input#disponibilidaddocente(type="file", accept=".csv", name="disponibilidaddocente")
-                                    p El archivo debe ser un Excel .csv
+                                    label(for="btndisponibilidaddocente") Disponibilidad
+                                    br
+                                    a.btn.btn-default#btndisponibilidaddocente(data-toggle="modal", data-target="#modaldisponibilidaddocente") Ingresar Disponibilidad
                             .col-md-6
                                 .form-group
                                     label(for="areadocente") Área
@@ -39,8 +39,8 @@ block content
                                     select.form-control#perfilprofesionaldocente(name="perfilprofesionaldocente")
                         .row
                             .col-md-12
-                                .form-group
-                                    button.btn.btn-default(type="submit") Ingresar Docente
+                                .form-group#btnupdateinsertdocente
+                                    button.btn.btn-default#btningresardocente(type="button") Ingresar Docente
                                     
     #mostrardocentes.tablecontent
         .container
@@ -61,6 +61,56 @@ block content
                                     th Perfil Profesional
                                     th Acciones
                             tbody#tabladocentes
+                            
+    .modal.fade#modaldisponibilidaddocente(tabindex="-1", role="dialog")
+        .modal-dialog(role="document")
+            .modal-content
+                .modal-header
+                    button.close(type="button", data-dismiss="modal", arial-label="Close")
+                        span(aria-hidden="true") X
+                    h4.text-center.modal-title Ingresar Disponibilidad
+                .modal-body
+                    .row
+                        .col-md-12
+                            .table-responsive
+                                table.table.table-bordered
+                                    thead
+                                        tr
+                                            th Bloques
+                                            th Lunes
+                                            th Martes
+                                            th Miercoles
+                                            th Jueves
+                                            th Viernes
+                                            th Sabado
+                                    tbody#tabledisponibilidaddocente
+                .modal-footer
+                    button.btn.btn-default(type="button", data-dismiss="modal") Cerrar
+                    
+    .modal.fade#modaldisponibilidaddocentelistado(tabindex="-1", role="dialog")
+        .modal-dialog(role="document")
+            .modal-content
+                .modal-header
+                    button.close(type="button", data-dismiss="modal", arial-label="Close")
+                        span(aria-hidden="true") X
+                    h4.text-center.modal-title Disponibilidad
+                .modal-body
+                    .row
+                        .col-md-12
+                            .table-responsive
+                                table.table.table-bordered
+                                    thead
+                                        tr
+                                            th Bloques
+                                            th Lunes
+                                            th Martes
+                                            th Miercoles
+                                            th Jueves
+                                            th Viernes
+                                            th Sabado
+                                    tbody#tabledisponibilidaddocentelistado
+                .modal-footer
+                    button.btn.btn-default(type="button", data-dismiss="modal") Cerrar
                             
 block scripts
 

@@ -2,7 +2,6 @@ var express = require("express")
 var multer = require("multer")
 var router = express.Router()
 
-
 var UserModel = require("../model/user.model.js")
 var AreaModel = require("../model/area.model.js")
 var AsignaturaModel = require("../model/asignatura.model.js")
@@ -14,6 +13,12 @@ var PerfilProfesionalModel = require("../model/perfilprofesional.model.js")
 var LogModel = require("../model/registroactividades.model.js")
 var SeccionModel = require("../model/seccion.model.js")
 
+// Multer Settings -----------------------------
+
+var upload = multer({ dest: "./uploads/" })
+
+// -----------------------------------------------
+
 router.get("/", (req, res) => {
 	res.render("index")
 })
@@ -23,7 +28,7 @@ router.get("/login", (req, res) => {
 })
 
 router.post("/reqlogin", (req, res) => {
-	var results = UserModel.checkUser(req.body.email, req.body.pass, (results) => {
+	UserModel.checkUser(req.body.email, req.body.pass, (results) => {
 		if (results) {
 			req.session.email = results[0].correo
 			req.session.area = results[0].codigo_area
@@ -35,8 +40,8 @@ router.post("/reqlogin", (req, res) => {
 })
 
 router.get("/logout", (req, res) => {
-	req.session.email = null
-	req.session.area = null
+	delete req.session.email
+	delete req.session.area
 	res.render("index")
 })
 
@@ -323,7 +328,12 @@ router.get("/docentes", (req, res) => {
 
 router.get("/alldocentes", (req, res) => {
 	if (typeof req.session.email != "undefined") {
-		DocenteModel.getDocentes((results) => {
+		var data = {
+			correo_usuario: req.session.email,
+			codigo_area: req.session.area
+		}
+		
+		DocenteModel.getDocentes(data, (results) => {
 			res.status(200).send(results)
 		})
 	} else {
@@ -331,21 +341,66 @@ router.get("/alldocentes", (req, res) => {
 	}
 })
 
-router.post("/indocente", multer({ dest: "./model/disponibilidad/docentes"}).single("disponibilidaddocente"), (req, res) => {
+router.post("/indocente", (req, res) => {
 	if (typeof req.session.email != "undefined") {
-		console.dir(req.body)
-		DocenteModel.inDocente({
-			run: req.body.rutdocente,
+		var data = {
+			correo_usuario: req.session.email,
+			run: req.body.rundocente,
 			nombre: req.body.nombredocente,
 			prioridad: req.body.prioridaddocente,
-			disponibilidad: req.file,
+			disponibilidad: req.body.disponibilidaddocente,
 			codigo_area: req.body.areadocente,
 			id_perfilprofesional: req.body.perfilprofesionaldocente
-		}, (results) => {
+		}
+		
+		DocenteModel.inDocente(data, (results) => {
 			if (results) {
-				res.status(200).send("¡Docente registrado correctamente!")
+				res.status(200).send("Docente Registrado!")
 			} else {
-				res.status(403).send("Error al ingresar el docente. Verifique que los campos sean correctos.")
+				res.status(403).send("Error al ingresar el Docente.")
+			}
+		})
+	} else {
+		res.render("index")
+	}
+})
+
+router.put("/updocente", (req, res) => {
+	if (typeof req.session.email != "undefined") {
+		var data = {
+			correo_usuario: req.session.email,
+			run: req.body.rundocente,
+			nombre: req.body.nombredocente,
+			prioridad: req.body.prioridaddocente,
+			disponibilidad: req.body.disponibilidaddocente,
+			codigo_area: req.body.areadocente,
+			id_perfilprofesional: req.body.perfilprofesionaldocente
+		}
+		
+		DocenteModel.updateDocente(data, (results) => {
+			if (results) {
+				res.status(200).send("Docente Actualizado!")
+			} else {
+				res.status(403).send("Error al actualizar el Docente.")
+			}
+		})
+	} else {
+		res.render("index")
+	}
+})
+
+router.delete("/deldocente", (req, res) => {
+	if (typeof req.session.email != "undefined") {
+		var data = {
+			correo_usuario: req.session.email,
+			run: req.body.run
+		}
+		
+		DocenteModel.removeDocente(data, (results) => {
+			if (results) {
+				res.status(200).send("Registro de Docente Eliminado!")
+			} else {
+				res.status(403).send("Error al eliminar el registro de Docente.")
 			}
 		})
 	} else {
@@ -717,6 +772,97 @@ router.get("/getregistroactividades", (req, res) => {
 		
 		LogModel.getRegistros(data, (results) => {
 			res.status(200).send(results)
+		})
+	} else {
+		res.render("index")
+	}
+})
+
+router.get("/crearusuario", (req, res) => {
+	if (typeof req.session.email != "undefined") {
+		res.render("crearusuario")
+	} else {
+		res.render("index")
+	}
+})
+
+router.get("/informacionpersonal", (req, res) => {
+	if (typeof req.session.email != "undefined") {
+		res.render("modinformacionpersonal")
+	} else {
+		res.render("index")
+	}
+})
+
+router.get("/getusuarios", (req, res) => {
+	if (typeof req.session.email != "undefined") {
+		var data = {
+			correo_usuario: req.session.email,
+			area: req.session.area
+		}
+		
+		UserModel.getUsers(data, (results) => {
+			res.status(200).send(results)
+		})
+	} else {
+		res.render("index")
+	}
+})
+
+router.get("/getinformacionpersonal", (req, res) => {
+	if (typeof req.session.email != "undefined") {
+		var data = {
+			correo_usuario: req.session.email
+		}
+		
+		UserModel.getOneUser(data, (results) => {
+			res.status(200).send(results)
+		})
+	} else {
+		res.render("index")
+	}
+})
+
+router.post("/inusuario", (req, res) => {
+	if (typeof req.session.email != "undefined") {
+		var data = {
+			correo_usuario: req.session.email,
+			correo: req.body.correousuario,
+			pass: req.body.passusuario,
+			nombre: req.body.nombreusuario,
+			institucion: req.body.institucionusuario,
+			codigo_area: req.body.areausuario
+		}
+		
+		UserModel.inUser(data, (results) => {
+			if (results) {
+				res.status(200).send("Usuario Registrado!")
+			} else {
+				res.status(403).send("Error al ingresar el nuevo Usuario.")
+			}
+		})
+	} else {
+		res.render("index")
+	}
+})
+
+router.put("/upusuario", (req, res) => {
+	if (typeof req.session.email != "undefined") {
+		var data = {
+			correo_usuario: req.session.email,
+			correo: req.body.correousuario,
+			pass: req.body.contrasenausuario,
+			nombre: req.body.nombreusuario,
+			institucion: req.body.institucionusuario,
+			codigo_area: req.body.areausuario
+		}
+		
+		UserModel.updateUser(data, (results) => {
+			if (results) {
+				res.status(200).send("Usuario Actualizado!")
+			} else {
+				res.status(403).send("Error al actualizar el Usuario.")
+			}
 		})
 	} else {
 		res.render("index")

@@ -1,0 +1,373 @@
+﻿<HTML>
+  <HEAD>
+    <META http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <STYLE>
+          .stdPVTblLCell {
+          background-color: Red;
+          color: white;
+          font-weight: bold;
+          text-align: left;
+          padding-left: 4px;
+          padding-top: 4px;
+          padding-bottom: 4px;
+          width: 100%;
+          font-size: 12pt;
+          }
+          .stdPageHdr {
+          color: #444444;
+          font-family:Tahoma;
+          text-align: left;
+          padding-left: 4px;
+          padding-top: 4px;
+          padding-bottom: 4px;
+          width: 100%;
+          font-size: 20pt;
+          }
+          .gridHeader {
+          background-color: #C0C0C0;
+          color: #000000;
+          font-size: 9pt;
+          font-weight: bold;
+          font-family:Tahoma;
+          vertical-align:middle;
+          text-align:center;
+          border: solid thin Black;
+          }
+          .SearchHeader {
+          color: DarkBlue;
+          font-size: 9pt;
+          font-weight: bold;
+          font-family:Verdana;
+          }
+          .SearchKey {
+          color: DarkBlue;
+          font-size: 9pt;
+          vertical-align:middle;
+          text-align:right;
+          font-family:Verdana;
+          }
+          .SearchValue {
+          color: Black;
+          font-size: 9pt;
+          font-weight: bold;
+          vertical-align:middle;
+          text-align:left;
+          font-family:Verdana;
+          }
+          .SearchResultHeader {
+          color: #444444;
+          font-size: 12px;
+          font-weight: bold;
+          font-family:Tahoma;
+          }
+          .SearchResultItem {
+          background-color: #FFFFFF;
+          color: Black;
+          font-size: 8pt;
+          font-family:Tahoma;
+          border: solid thin Black;
+          width: 80px;
+          text-align: center;
+          }
+          .SearchResultAltItem {
+          background-color: #DDDDDD;
+          color: Black;
+          font-size: 8pt;
+          font-family:Tahoma;
+          border: solid thin Black;
+          width: 80px;
+          text-align: center;
+          }
+        </STYLE>
+  </HEAD>
+  <BODY>
+    <TABLE>
+      <TR>
+        <TD class="stdPageHdr" colspan="8">Disponibilidad Horaria</TD>
+      </TR>
+      <TR>
+        <TD></TD>
+      </TR>
+      <TR>
+        <TD colspan="2" class="SearchKey">Profesor</TD>
+        <TD colspan="6" class="SearchValue">Christopher Muñoz Parra</TD>
+      </TR>
+      <TR>
+        <TD colspan="2" class="SearchKey">Sede</TD>
+        <TD colspan="6" class="SearchValue">Chillán</TD>
+      </TR>
+      <TR>
+        <TD colspan="2" class="SearchKey">Semestre</TD>
+        <TD colspan="6" class="SearchValue">PRIMAVERA 2017</TD>
+      </TR>
+      <TR>
+        <TD></TD>
+      </TR>
+      <TR class="SearchResultHeader">
+        <TD colspan="7">Horario Académico</TD>
+        <TD></TD>
+      </TR>
+      <TR>
+        <TD colspan="16"></TD>
+      </TR>
+      <TR>
+        <TD COLSPAN="7">
+          <TABLE>
+            <TR>
+              <TD class="gridHeader">Bloque</TD>
+              <TD class="gridHeader">Lunes</TD>
+              <TD class="gridHeader">Martes</TD>
+              <TD class="gridHeader">Miércoles</TD>
+              <TD class="gridHeader">Jueves</TD>
+              <TD class="gridHeader">Viernes</TD>
+              <TD class="gridHeader">Sábado</TD>
+            </TR>
+            <TR>
+              <TD class="SearchResultItem">08:30 - 09:15</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+            </TR>
+            <TR>
+              <TD class="SearchResultItem">09:15 - 10:00</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+            </TR>
+            <TR>
+              <TD class="SearchResultItem">10:05 - 10:50</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+            </TR>
+            <TR>
+              <TD class="SearchResultItem">10:50 - 11:35</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+            </TR>
+            <TR>
+              <TD class="SearchResultItem">11:40 - 12:25</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+            </TR>
+            <TR>
+              <TD class="SearchResultItem">12:25 - 13:10</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+            </TR>
+            <TR>
+              <TD class="SearchResultItem">13:45 - 14:30</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+            </TR>
+            <TR>
+              <TD class="SearchResultItem">14:30 - 15:15</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+            </TR>
+            <TR>
+              <TD class="SearchResultItem">15:20 - 16:05</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+            </TR>
+            <TR>
+              <TD class="SearchResultItem">16:05 - 16:50</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+            </TR>
+            <TR>
+              <TD class="SearchResultItem">16:55 - 17:40</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+            </TR>
+            <TR>
+              <TD class="SearchResultItem">17:40 - 18:25</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+            </TR>
+            <TR>
+              <TD class="SearchResultItem">18:30 - 19:15</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+              <TD class="SearchResultItem">
+              </TD>
+            </TR>
+            <TR>
+              <TD class="SearchResultItem">19:15 - 20:00</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+              <TD class="SearchResultItem">
+              </TD>
+            </TR>
+            <TR>
+              <TD class="SearchResultItem">20:05 - 20:50</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+              <TD class="SearchResultItem">
+              </TD>
+            </TR>
+            <TR>
+              <TD class="SearchResultItem">20:50 - 21:35</TD>
+              <TD class="SearchResultItem">
+              </TD>
+              <TD class="SearchResultItem">
+              </TD>
+              <TD class="SearchResultItem">
+              </TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+              <TD class="SearchResultItem">
+              </TD>
+              <TD class="SearchResultItem">
+              </TD>
+            </TR>
+            <TR>
+              <TD class="SearchResultItem">21:40 - 22:25</TD>
+              <TD class="SearchResultItem">
+              </TD>
+              <TD class="SearchResultItem">
+              </TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+              <TD class="SearchResultItem">
+              </TD>
+              <TD class="SearchResultItem">
+              </TD>
+              <TD class="SearchResultItem">
+              </TD>
+            </TR>
+            <TR>
+              <TD class="SearchResultItem">22:25 - 23:10</TD>
+              <TD class="SearchResultItem">
+              </TD>
+              <TD class="SearchResultItem">
+              </TD>
+              <TD class="SearchResultItem">DISPONIBLE</TD>
+              <TD class="SearchResultItem">
+              </TD>
+              <TD class="SearchResultItem">
+              </TD>
+              <TD class="SearchResultItem">
+              </TD>
+            </TR>
+          </TABLE>
+        </TD>
+        <TD></TD>
+        <TD COLSPAN="8"></TD>
+      </TR>
+      <TR>
+        <TD></TD>
+      </TR>
+      <TR class="SearchResultHeader">
+        <TD colspan="2">Asignaturas Agregadas</TD>
+      </TR>
+      <TR>
+        <TD></TD>
+      </TR>
+      <TR>
+        <TD colspan="7" class="SearchResultItem" style="text-align: left;">BP0106 - Informática Educativa</TD>
+      </TR>
+      <TR>
+        <TD colspan="7" class="SearchResultAltItem" style="text-align: left;">FGSP03 - Tecnologías de la Información y la Comunicación</TD>
+      </TR>
+      <TR>
+        <TD colspan="7" class="SearchResultItem" style="text-align: left;">FGTC01 - Tecnologías de la Información y la Comunicación</TD>
+      </TR>
+      <TR>
+        <TD colspan="7" class="SearchResultAltItem" style="text-align: left;">MPHC01 - Herramientas Computacionales</TD>
+      </TR>
+      <TR>
+        <TD colspan="7" class="SearchResultItem" style="text-align: left;">NETW02 - Networking II</TD>
+      </TR>
+      <TR>
+        <TD colspan="7" class="SearchResultAltItem" style="text-align: left;">PRCA01 - Computación Aplicada</TD>
+      </TR>
+      <TR>
+        <TD colspan="7" class="SearchResultItem" style="text-align: left;">TI1213 - Taller de Programación IV</TD>
+      </TR>
+      <TR>
+        <TD colspan="7" class="SearchResultAltItem" style="text-align: left;">TI1229 - Taller Integral de Proyectos Informáticos</TD>
+      </TR>
+      <TR>
+        <TD colspan="7" class="SearchResultItem" style="text-align: left;">TIAC01 - Aplicaciones Computacionales</TD>
+      </TR>
+      <TR>
+        <TD colspan="7" class="SearchResultAltItem" style="text-align: left;">TIDS02 - Programación Orientada a Objeto</TD>
+      </TR>
+      <TR>
+        <TD colspan="7" class="SearchResultItem" style="text-align: left;">TIGS04 - Comunicación y Redes de Datos</TD>
+      </TR>
+      <TR>
+        <TD colspan="7" class="SearchResultAltItem" style="text-align: left;">TISI01 - Sistemas de Información Administrativo</TD>
+      </TR>
+      <TR>
+        <TD colspan="7" class="SearchResultItem" style="text-align: left;">TTFP01 - Fundamentos de Programación en Topografía</TD>
+      </TR>
+      <TR>
+        <TD></TD>
+      </TR>
+      <TR class="SearchResultHeader">
+        <TD colspan="2">Observaciones</TD>
+      </TR>
+      <TR>
+        <TD></TD>
+      </TR>
+      <TR>
+        <TD colspan="7">
+        </TD>
+      </TR>
+    </TABLE>
+  </BODY>
+</HTML>

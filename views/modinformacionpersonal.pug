@@ -1,11 +1,11 @@
 extends ./_layout
 
 block content
-    #ingresarusuario.formcontent
+    #modificarinformacionpersonal.formcontent
         .container
             .row
                 .col-md-12
-                    h2.text-center Ingresar Usuario
+                    h2.text-center Modificar Información Personal
             .row
                 .col-md-12
                     form#form-usuario
@@ -13,15 +13,19 @@ block content
                             .col-md-6
                                 .form-group
                                     label(for="correousuario") Correo Electrónico
-                                    input.form-control#correousuario(type="text", placeholder="Ingrese el Correo Electrónico del nuevo Usuario", name="correousuario")
+                                    input.form-control#correousuario(type="text", placeholder="Ingrese su Correo Electrónico", name="correousuario")
                             .col-md-6
                                 .form-group
                                     label(for="contrasenausuario") Contraseña
-                                    input.form-control#contrasenausuario(type="password", placeholder="Ingrese la Contraseña del nuevo Usuario", name="contrasenausuario")
+                                    input.form-control#contrasenausuario(type="password", placeholder="Ingrese su Contraseña", name="contrasenausuario")
                             .col-md-6
                                 .form-group
                                     label(for="nombreusuario") Nombre
-                                    input.form-control#nombreusuario(type="text", placeholder="Ingrese el Nombre del nuevo Usuario", name="nombreusuario")
+                                    input.form-control#nombreusuario(type="text", placeholder="Ingrese su Nombre", name="nombreusuario")
+                            .col-md-6
+                                .form-group
+                                    label(for="institucionusuario") Institución
+                                    input.form-control#institucionusuario(type="text", placeholder="Ingrese su Institución", name="institucionusuario")
                             .col-md-6
                                 .form-group
                                     label(for="areausuario") Área
@@ -29,13 +33,13 @@ block content
                         .row
                             .col-md-12
                                 .form-group
-                                    button.btn.btn-default(type="submit") Ingresar Usuario
+                                    button.btn.btn-default#btningresarinformacionpersonal(type="button") Modificar Información Personal
                                     
-    #mostrarusuarios.tablecontent
+    #mostrarinformacionpersonal.tablecontent
         .container
             .row
                 .col-md-12
-                    h2.text-center Usuarios
+                    h2.text-center Información Personal
             .row
                 .col-md-12
                     .table-responsive
@@ -44,9 +48,9 @@ block content
                                 tr
                                     th Correo Electrónico
                                     th Nombre
+                                    th Institución
                                     th Área
-                                    th Acciones
-                            tbody#tableusuarios
+                            tbody#tableinformacionpersonal
 
 block scripts
-    script(type="text/javascript", src="/js/usuarios.js")
+    script(type="text/javascript", src="/js/modinformacionpersonal.js")

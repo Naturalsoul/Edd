@@ -28,11 +28,31 @@ model.checkUser = (email, pass, next) => {
 
 model.getUsers = (data, next) => {
 	var sql = "SELECT u.correo AS correo, u.nombre AS nombre, u.institucion AS institucion, u.codigo_area AS codigo_area, a.nombre AS nombre_area "
-		sql += "FROM usuario AS u LEFT JOIN area AS a ON u.codigo_area = a.codigo WHERE u.codigo_area = '" + data.codigo_area + "'"
+		sql += "FROM usuario AS u LEFT JOIN area AS a ON u.codigo_area = a.codigo"
 	
 	cn.Ask(sql, (results) => {
 		if (results) {
-			data.accion = "consultó por todos los registros de Usuario con el Código de Área " + data.codigo
+			data.accion = "consultó por todos los registros de Usuario con el Código de Área " + data.area
+			
+			log.inRegistro(data, (res) => {
+				if (res) {
+					next(results)
+				} else {
+					next(false)
+				}
+			})
+		} else {
+			next(false)
+		}
+	})
+}
+
+model.getOneUser = (data, next) => {
+	var sql = "SELECT * FROM usuario WHERE correo = '" + data.correo_usuario + "'"
+	
+	cn.Ask(sql, (results) => {
+		if (results) {
+			data.accion = "consultó por su información personal"
 			
 			log.inRegistro(data, (res) => {
 				if (res) {
