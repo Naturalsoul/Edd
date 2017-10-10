@@ -51,10 +51,22 @@ block content
                                         option(value="8") 9º Semestre
                             .col-md-6
                                 .form-group
-                                    label(for="mayaasignatura") Maya
+                                    label(for="horasporsemanaasignatura") Horas por semana
+                                    select.form-control#horasporsemanaasignatura(name="horasporsemanaasignatura")
+                                        option(value="2") 2 Horas
+                                        option(value="3") 3 Horas
+                                        option(value="4") 4 Horas
+                                        option(value="5") 5 Horas
+                                        option(value="6") 6 Horas
+                            .col-md-6
+                                .form-group
+                                    label(for="mayaasignatura") Malla
                                     select.form-control#mayaasignatura(name="mayaasignatura")
-                        .row
-                            .col-md-12
+                            .col-md-6
+                                .form-group
+                                    label(for="docentesasignatura") Docentes a Asignar
+                                    select.form-control#docentesasignatura(name="docentesasignatura", multiple)
+                            .col-md-6
                                 .form-group#btnupdateinsertasignatura
                                     button.btn.btn-default#btningresarasignatura(type="button") Ingresar Asignatura
                                     
@@ -74,8 +86,10 @@ block content
                                     th Especialidad
                                     th Cantidad de Horas
                                     th Equipamiento Tecnológico
+                                    th Horas por Semana
                                     th Semestre
-                                    th Maya
+                                    th Docentes Asignados
+                                    th Malla
                                     th Acciones
                             tbody#tableasignaturas
 

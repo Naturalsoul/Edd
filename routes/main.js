@@ -439,7 +439,9 @@ router.post("/inasignatura", (req, res) => {
 			especialidad: req.body.especialidadasignatura,
 			cantidad_horas: req.body.cantidadhorasasignatura,
 			equipamiento: req.body.equipamientoasignatura,
+			horasporsemana: req.body.horasporsemanaasignatura,
 			semestre: req.body.semestreasignatura,
+			docentes: req.body.docentesasignatura,
 			codigo_maya: req.body.mayaasignatura
 		}
 		
@@ -464,7 +466,9 @@ router.put("/upasignatura", (req, res) => {
 			especialidad: req.body.especialidadasignatura,
 			cantidad_horas: req.body.cantidadhorasasignatura,
 			equipamiento: req.body.equipamientoasignatura,
+			horasporsemana: req.body.horasporsemanaasignatura,
 			semestre: req.body.semestreasignatura,
+			docentes: req.body.docentesasignatura,
 			codigo_maya: req.body.mayaasignatura
 		}
 		
