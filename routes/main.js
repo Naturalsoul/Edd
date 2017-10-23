@@ -12,6 +12,7 @@ var MayaModel = require("../model/maya.model.js")
 var PerfilProfesionalModel = require("../model/perfilprofesional.model.js")
 var LogModel = require("../model/registroactividades.model.js")
 var SeccionModel = require("../model/seccion.model.js")
+var PlanificarHorariosModel = require("../model/planificarhorarios.model.js")
 
 // Multer Settings -----------------------------
 
@@ -442,7 +443,8 @@ router.post("/inasignatura", (req, res) => {
 			horasporsemana: req.body.horasporsemanaasignatura,
 			semestre: req.body.semestreasignatura,
 			docentes: req.body.docentesasignatura,
-			codigo_maya: req.body.mayaasignatura
+			codigo_maya: req.body.mayaasignatura,
+			perfiles: req.body.perfilprofesionalasignatura
 		}
 		
 		AsignaturaModel.inAsignatura(data, (results) => {
@@ -469,7 +471,8 @@ router.put("/upasignatura", (req, res) => {
 			horasporsemana: req.body.horasporsemanaasignatura,
 			semestre: req.body.semestreasignatura,
 			docentes: req.body.docentesasignatura,
-			codigo_maya: req.body.mayaasignatura
+			codigo_maya: req.body.mayaasignatura,
+			perfiles: req.body.perfilprofesionalasignatura
 		}
 		
 		AsignaturaModel.updateAsignatura(data, (results) => {
@@ -617,9 +620,9 @@ router.post("/inmaya", (req, res) => {
 		
 		MayaModel.inMaya(data, (results) => {
 			if (results) {
-				res.status(200).send("Maya Registrada!")
+				res.status(200).send("Malla Registrada!")
 			} else {
-				res.status(403).send("Error al ingresar la Maya.")
+				res.status(403).send("Error al ingresar la Malla.")
 			}
 		})
 	} else {
@@ -638,9 +641,9 @@ router.put("/upmaya", (req, res) => {
 		
 		MayaModel.updateMaya(data, (results) => {
 			if (results) {
-				res.status(200).send("Maya Actualizada!")
+				res.status(200).send("Malla Actualizada!")
 			} else {
-				res.status(403).send("Error al actualizar la Maya.")
+				res.status(403).send("Error al actualizar la Malla.")
 			}
 		})
 	} else {
@@ -657,9 +660,9 @@ router.delete("/delmaya", (req, res) => {
 		
 		MayaModel.removeMaya(data, (results) => {
 			if (results) {
-				res.status(200).send("Maya Eliminada!")
+				res.status(200).send("Malla Eliminada!")
 			} else {
-				res.status(403).send("Error al eliminar la Maya.")
+				res.status(403).send("Error al eliminar la Malla.")
 			}
 		})
 	} else {
@@ -876,6 +879,23 @@ router.put("/upusuario", (req, res) => {
 router.get("/planificarhorarios", (req, res) => {
 	if (typeof req.session.email != "undefined") {
 		res.render("planificarhorarios")
+	} else {
+		res.render("index")
+	}
+})
+
+router.post("/doplanificar", (req, res) => {
+	if (typeof req.session.email != "undefined") {
+		var data = {
+			correo_usuario: req.session.email,
+			codigo_area: req.session.area,
+			seccion: req.body.seccion
+		}
+		
+		PlanificarHorariosModel.inHorarios(data, (results) => {
+			res.send(results)
+		})
+		
 	} else {
 		res.render("index")
 	}

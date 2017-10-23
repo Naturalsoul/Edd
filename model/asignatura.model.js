@@ -23,27 +23,10 @@ model.getAsignaturas = (data, next) => {
                     if (res2) {
                         finalRes[i].docente = JSON.parse(JSON.stringify(res2))
                         
-                        data.accion = "consultó por todos los Docentes asignados a una Asignatura"
+                        data.accion = "consultó por todos los Docentes asignados a la Asignatura " + o.codigo
                         
                         log.inRegistro(data, (res) => {
                             if (res) {
-                                if (i + 1 == results.length) {
-                                    if (flag) {
-                                        data.accion = "consultó por todos los registros de Asignatura"
-                                        
-                                        log.inRegistro(data, (res) => {
-                                            if (res) {
-                                                next(finalRes)
-                                            } else {
-                                                next(false)
-                                            }
-                                        })
-                                        
-                                    } else {
-                                        next(false)
-                                    }
-                                }
-                                
                                 return
                             } else {
                                 flag = false
@@ -56,11 +39,53 @@ model.getAsignaturas = (data, next) => {
                         return
                     }
                 })
+                
+                sql = "SELECT dp.id_perfilprofesional AS id_perfilprofesional, p.perfil AS perfil FROM asignatura_perfilprofesional AS dp "
+                sql += "INNER JOIN perfilprofesional AS p ON dp.codigo_asignatura = '" + o.codigo + "' AND dp.id_perfilprofesional = p.id"
+                
+                cn.Ask(sql, (res3) => {
+                    if (res3) {
+                        finalRes[i].perfiles = JSON.parse(JSON.stringify(res3))
+                        
+                        data.accion = "consultó por los Perfil Profesionales asignados a la Asignatura " + o.codigo
+                        
+                        log.inRegistro(data, (res) => {
+                            if (res) {
+                                if (i + 1 == results.length) {
+                                    if (flag) {
+                                        data.accion = "consultó por todos los registros de Asignatura"
+                                        
+                                        log.inRegistro(data, (res) => {
+                                            if (res) { 
+                                                next(finalRes)
+                                            } else {
+                                                next(false)
+                                            }
+                                        })
+                                        
+                                    } else {
+                                        next(false)
+                                    }
+                                }
+                            } else {
+                                flag = false
+                                return
+                            }
+                        })
+                    } else {
+                        flag = false
+                        return
+                    }
+                })
             })
         } else {
             next(false)
         }
     })
+    
+    if (!flag) {
+        next(false)
+    }
 }
 
 model.inAsignatura = (data, next) => {
@@ -100,6 +125,50 @@ model.inAsignatura = (data, next) => {
                 cn.Insert(sql, (res) => {
                     if (res) {
                         data.accion = "asignó el Docente con el Run " + data.docentes + " a la Asignatura " + data.nombre
+                        
+                        log.inRegistro(data, (res) => {
+                            if (res) {
+                                return
+                            } else {
+                                flag = false
+                                return
+                            }
+                        })
+                    } else {
+                        flag = false
+                        return
+                    }
+                })
+            }
+            
+            if (typeof data.perfiles == "object") {
+                data.perfiles.forEach((e, i) => {
+                    sql = "INSERT INTO asignatura_perfilprofesional (codigo_asignatura, id_perfilprofesional) VALUES('" + data.codigo + "', '" + e + "')"
+                    
+                    cn.Insert(sql, (res) => {
+                        if (res) {
+                            data.accion = "asignó el Perfil Profesional " + e + " a la Asignatura " + data.nombre
+                            
+                            log.inRegistro(data, (res) => {
+                                if (res) {
+                                    return
+                                } else {
+                                    flag = false
+                                    return
+                                }
+                            })
+                        } else {
+                            flag = false
+                            return
+                        }
+                    })
+                })
+            } else {
+                sql = "INSERT INTO asignatura_perfilprofesional (codigo_asignatura, id_perfilprofesional) VALUES('" + data.codigo + "', '" + data.perfiles + "')"
+                
+                cn.Insert(sql, (res) => {
+                    if (res) {
+                        data.accion = "asignó el Perfil Profesional " + data.perfiles + " a la Asignatura " + data.nombre
                         
                         log.inRegistro(data, (res) => {
                             if (res) {
@@ -190,6 +259,50 @@ model.updateAsignatura = (data, next) => {
                 })
             }
             
+            if (typeof data.perfiles == "object") {
+                data.perfiles.forEach((e, i) => {
+                    sql = "UPDATE asignatura_perfilprofesional SET id_perfilprofesional = '" + e + "' WHERE codigo_asignatura = '" + data.codigo + "'"
+                    
+                    cn.Update(sql, (res) => {
+                        if (res) {
+                            data.accion = "actualizó los Perfiles Profesionales asignados a la Asignatura " + data.codigo
+                            
+                            log.inRegistro(data, (res) => {
+                                if (res) {
+                                    return
+                                } else {
+                                    flag = false
+                                    return
+                                }
+                            })
+                        } else {
+                            flag = false
+                            return
+                        }
+                    })
+                })
+            } else {
+                sql = "UPDATE asignatura_perfilprofesional SET id_perfilprofesional = '" + data.perfiles + "' WHERE codigo_asignatura = '" + data.codigo + "'"
+                
+                cn.Update(sql, (res) => {
+                    if (res) {
+                        data.accion = "actualizó los Perfiles Profesional asignados a la Asignatura " + data.codigo
+                        
+                        log.inRegistro(data, (res) => {
+                            if (res) {
+                                return
+                            } else {
+                                flag = false
+                                return
+                            }
+                        })
+                    } else {
+                        flag = false
+                        return
+                    }
+                })
+            }
+            
             if (flag) {
                 data.accion = "actualizó el registro con el Código " + data.codigo + " en Asignatura"
                 
@@ -219,21 +332,32 @@ model.removeAsignatura = (data, next) => {
             
             log.inRegistro(data, (res) => {
                 if (res) {
-                    sql = "DELETE FROM asignatura WHERE codigo = '" + data.codigo + "'"
+                    sql = "DELETE FROM asignatura_perfilprofesional WHERE codigo_asignatura = '" + data.codigo + "'"
                     
                     cn.Remove(sql, (res) => {
                         if (res) {
-                            data.accion = "eliminó el registro de Asignatura con el código " + data.codigo
+                            data.accion = "eliminó todas las asignaciones de Perfiles Profesionales a la Asignatura con el código " + data.codigo
                             
                             log.inRegistro(data, (res) => {
-                                (res) ? next(res) : next(false)
+                                sql = "DELETE FROM asignatura WHERE codigo = '" + data.codigo + "'"
+                                
+                                cn.Remove(sql, (res) => {
+                                    if (res) {
+                                        data.accion = "eliminó el registro de Asignatura con el código " + data.codigo
+                                        
+                                        log.inRegistro(data, (res) => {
+                                            (res) ? next(res) : next(false)
+                                        })
+                                        
+                                    } else {
+                                        next(false)
+                                    }
+                                })
                             })
-                            
                         } else {
                             next(false)
                         }
                     })
-                    
                 } else {
                     next(false)
                 }

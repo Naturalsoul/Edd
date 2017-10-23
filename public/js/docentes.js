@@ -132,7 +132,7 @@ $(document).ready(() => {
             
             for (var e = 0; e < 6; e++) {
                 html += "<td>"
-                html += "<input type='checkbox' id='" + i + "-" + e + "'></input>"
+                html += "<input type='checkbox' id='" + i + "-" + e + "' class='form-control'></input>"
                 html += "</td>"
             }
             
@@ -140,6 +140,11 @@ $(document).ready(() => {
         }
         
         $("#tabledisponibilidaddocente").html(html)
+        
+        $("#disponibilidadcompleta").click((e) => {
+            var table = $("#tabladisponibilidaddocentecompleta")
+            $('td input:checkbox', table).prop('checked',this.checked)
+        })
     }
 })
 

@@ -8,26 +8,35 @@ block content
 					h2.text-center Planificar Horarios
 			.row
 				.col-md-12
-					label(for="area") Área
+					label(for="planificararea") Área
 					select.form-control#planificararea(name="planificararea")
 				.col-md-12
-					label(for="carrera") Carrera
+					label(for="planificarcarrera") Carrera
 					select.form-control#planificarcarrera(name="planificarcarrera")
 				.col-md-12
-					label(for="semestreplanificar") Semestre
-					select.form-control#semestreplanificar(name="semestreplanificar")
-						option(value="0") 1º Semestre
-						option(value="1") 2º Semestre
-						option(value="2") 3º Semestre
-						option(value="3") 4º Semestre
-						option(value="4") 5º Semestre
-						option(value="5") 6º Semestre
-						option(value="6") 7º Semestre
-						option(value="7") 8º Semestre
-						option(value="8") 9º Semestre
+					label(for="seccionplanificar") Sección
+					select.form-control#seccionplanificar(name="seccionplanificar")
 				.col-md-12
 					br
-					button.btn.btn-default#btnplanificar(data-toggle="modal" data-target="#modalplanificar") Planificar Horarios
+					button.btn.btn-default#btnplanificar(type="button") Planificar Horarios
+					
+	br
+	#horariocreado
+		.container
+			.row
+				.col-md-12
+					.table-responsive
+						table.table-bordered
+							thead
+								tr
+									th Bloques Horarios
+									th Lunes
+									th Martes
+									th Miercoles
+									th Jueves
+									th Viernes
+									th Sabado
+							tbody#tablehorariocreado
 
 	.modal.fade#modalplanificar(tabindex="-1", role="dialog")
 		.modal-dialog(role="document")
@@ -41,3 +50,6 @@ block content
 					img.img-responsive(src="/img/homero.gif")
 				.modal-footer
 					button.btn.btn-default(type="button", data-dismiss="modal") Cerrar
+					
+block scripts
+	script(type="text/javascript", src="/js/planificarhorarios.js")

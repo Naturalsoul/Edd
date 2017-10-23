@@ -67,6 +67,10 @@ block content
                                     label(for="docentesasignatura") Docentes a Asignar
                                     select.form-control#docentesasignatura(name="docentesasignatura", multiple)
                             .col-md-6
+                                .form-group
+                                    label(for="perfilprofesionalasignatura") Perfil Profesional requerido por la Asignatura
+                                    select.form-control#perfilprofesionalasignatura(name="perfilprofesionalasignatura", multiple)
+                            .col-md-6
                                 .form-group#btnupdateinsertasignatura
                                     button.btn.btn-default#btningresarasignatura(type="button") Ingresar Asignatura
                                     
@@ -89,6 +93,7 @@ block content
                                     th Horas por Semana
                                     th Semestre
                                     th Docentes Asignados
+                                    th Perfiles Profesionales Asignados
                                     th Malla
                                     th Acciones
                             tbody#tableasignaturas

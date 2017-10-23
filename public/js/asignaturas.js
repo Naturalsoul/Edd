@@ -2,6 +2,7 @@ $(document).ready(() => {
     getAsignaturas()
     getMayas()
     getDocentes()
+    getPerfiles()
     
     function getAsignaturas() {
         $.ajax({
@@ -15,6 +16,8 @@ $(document).ready(() => {
         function inResults (data) {
             var html = ""
             var i = 0
+            
+            console.log(data)
             
             data.forEach((e) => {
                 
@@ -64,6 +67,17 @@ $(document).ready(() => {
                 }
                 
                 html += "</td>"
+                html += "<td>"
+                
+                for (var c = 0; c < e.perfiles.length; c++) {
+                    html += e.perfiles[c].perfil
+                    
+                    if (c + 1 != e.perfiles.length) {
+                        html += " - "
+                    }
+                }
+                
+                html += "</td>"
                 
                 html += "<td id='" + i + "-maya'>" + e.codigo_maya + "</td><td>"
                 html += "<a id='" + i + "-update'> Modificar | </a>"
@@ -87,8 +101,18 @@ $(document).ready(() => {
                     }
                 }
                 
+                var perfiles = ""
+                
+                for (var c = 0; c < data[i].perfiles.length; c++) {
+                    perfiles += data[i].perfiles[c].id_perfilprofesional
+                    
+                    if (c + 1 != data[i].perfiles.length) {
+                        perfiles += ","
+                    }
+                }
+                
                 var forUpdate = "'" + data[i].codigo + "', '" + data[i].nombre + "', '" + data[i].especialidad + "', '" + data[i].cantidad_horas + "', '" + data[i].equipamiento
-                forUpdate += "', '" + data[i].horasporsemana + "', '" + data[i].semestre + "', '" + run_docente + "', '" + data[i].codigo_maya + "'"
+                forUpdate += "', '" + data[i].horasporsemana + "', '" + data[i].semestre + "', '" + run_docente + "', '" + perfiles + "', '" + data[i].codigo_maya + "'"
                 
                 $("#" + i + "-update").attr("onclick", "update(" + forUpdate + ")")
                 $("#" + i + "-remove").attr("onclick", "remove('" + data[i].codigo + "')")
@@ -136,6 +160,26 @@ $(document).ready(() => {
         }
     }
     
+    function getPerfiles () {
+        $.ajax({
+            type: "GET",
+            url: "/allperfiles",
+            contentType: "application/json",
+            dataType: "json",
+            success: inResults
+        })
+        
+        function inResults (data) {
+            var html = ""
+            
+            data.forEach((e) => {
+                html += "<option value='" + e.id + "'>" + e.perfil + "</option>"
+            })
+            
+            $("#perfilprofesionalasignatura").html(html)
+        }
+    }
+    
     $("#btningresarasignatura").on("click", () => {
         $.ajax({
             type: "POST",
@@ -164,7 +208,7 @@ function remove (codigo) {
     }
 }
 
-function update (codigo, nombre, especialidad, cantidad_horas, equipamiento, horasporsemana, semestre, run_docente, codigo_maya) {
+function update (codigo, nombre, especialidad, cantidad_horas, equipamiento, horasporsemana, semestre, run_docente, perfiles, codigo_maya) {
     $("#codigoasignatura").val(codigo).prop("disabled", true)
     $("#nombreasignatura").val(nombre)
     $("#especialidadasignatura").val(especialidad)
@@ -173,6 +217,7 @@ function update (codigo, nombre, especialidad, cantidad_horas, equipamiento, hor
     $("#horasporsemanaasignatura").val(horasporsemana)
     $("#semestreasignatura").val(semestre)
     $("#docentesasignatura").val(run_docente.split(","))
+    $("#perfilprofesionalasignatura").val(perfiles.split(","))
     $("#mayaasignatura").val(codigo_maya)
     
     $("#btnupdateinsertasignatura").html("<button class='btn btn-default' id='btnupdateasignatura'>Actualizar Asignatura</button>")

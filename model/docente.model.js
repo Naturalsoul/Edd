@@ -6,7 +6,7 @@ var model = {}
 model.getDocentes = (data, next) => {
     var sql = "SELECT d.run AS run, d.nombre AS nombre, d.prioridad AS prioridad, d.disponibilidad AS disponibilidad, a.codigo AS codigo_area, "
         sql += "a.nombre AS area, p.id AS id_perfilprofesional, p.perfil AS perfil FROM docente AS d INNER JOIN area AS a ON d.codigo_area = a.codigo "
-        sql += "INNER JOIN perfilprofesional AS p ON p.id = (SELECT id_perfilprofesional FROM docente_perfilprofesional WHERE run_docente = d.run)"
+        sql += "OR d.codigo_area = 'Transversal' INNER JOIN perfilprofesional AS p ON p.id = (SELECT id_perfilprofesional FROM docente_perfilprofesional WHERE run_docente = d.run)"
     
     cn.Ask(sql, (results) => {
         if (results) {
