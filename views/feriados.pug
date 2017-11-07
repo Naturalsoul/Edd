@@ -1,0 +1,43 @@
+extends ./_layout.pug
+
+block content
+    #ingresarferiado.formcontent
+        .container
+            .row
+                .col-md-12
+                    h2.text-center Feriados
+            .row
+                .col-md-12
+                    form#form-feriados
+                        .row
+                            .col-md-6
+                                .form-group
+                                    label(for="diaferiado") Día
+                                    input.form-control#diaferiado(type="number", name="diaferiado", min="1", max="31")
+                            .col-md-6
+                                .form-group
+                                    label(for="mesferiado") Mes
+                                    input.form-control#mesferiado(type="number", name="mesferiado", min="1", max="12")
+                            .col-md-6
+                                .form-group#btnupdateinsertferiado
+                                    button.btn.btn-default#btningresarferiado(type="button") Ingresar Feriado
+                                    
+    #mostrarferiados.tablecontent
+        .container
+            .row
+                .col-md-12
+                    h2.text-center Listado de Feriados
+            .row
+                .col-md-12
+                    .table-responsive
+                        table.table
+                            thead
+                                tr
+                                    th Id
+                                    th Día
+                                    th Mes
+                                    th Acciones
+                            tbody#tableferiados
+
+block scripts
+    script(type="text/javascript", src="/js/feriados.js")

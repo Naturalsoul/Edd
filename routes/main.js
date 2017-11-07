@@ -13,6 +13,8 @@ var PerfilProfesionalModel = require("../model/perfilprofesional.model.js")
 var LogModel = require("../model/registroactividades.model.js")
 var SeccionModel = require("../model/seccion.model.js")
 var PlanificarHorariosModel = require("../model/planificarhorarios.model.js")
+var SalaModel = require("../model/sala.model.js")
+var FeriadoModel = require("../model/feriado.model.js")
 
 // Multer Settings -----------------------------
 
@@ -30,7 +32,7 @@ router.get("/login", (req, res) => {
 
 router.post("/reqlogin", (req, res) => {
 	UserModel.checkUser(req.body.email, req.body.pass, (results) => {
-		if (results) {
+		if (results.length > 0) {
 			req.session.email = results[0].correo
 			req.session.area = results[0].codigo_area
 			res.status(200).send({connected: true})
@@ -876,6 +878,91 @@ router.put("/upusuario", (req, res) => {
 	}
 })
 
+router.get("/salas", (req, res) => {
+	if (typeof req.session.email != "undefined") {
+		res.render("salas")
+	} else {
+		res.render("index")
+	}
+})
+
+router.get("/getsalas", (req, res) => {
+	if (typeof req.session.email != "undefined") {
+		var data = {
+			correo_usuario: req.session.email
+		}
+		
+		SalaModel.getSalas(data, (results) => {
+			res.status(200).send(results)
+		})
+	} else {
+		res.render("index")
+	}
+})
+
+router.post("/insala", (req, res) => {
+	if (typeof req.session.email != "undefined") {
+		var data = {
+			correo_usuario: req.session.email,
+			codigo: req.body.codigo,
+			capacidad_alumnos: req.body.capacidad_alumnos,
+			equipamiento: req.body.equipamiento,
+			disponibilidad: req.body.disponibilidad
+		}
+		
+		SalaModel.inSala(data, (results) => {
+			if (results) {
+				res.status(200).send("Sala Registrada!")
+			} else {
+				res.status(403).send("Error al ingresar la Sala.")
+			}
+		})
+	} else {
+		res.render("index")
+	}
+})
+
+router.put("/upsala", (req, res) => {
+	if (typeof req.session.email != "undefined") {
+		var data = {
+			correo_usuario: req.session.email,
+			codigo: req.body.codigo,
+			capacidad_alumnos: req.body.capacidad_alumnos,
+			equipamiento: req.body.equipamiento,
+			disponibilidad: req.body.disponibilidad
+		}
+		
+		SalaModel.updateSala(data, (results) => {
+			if (results) {
+				res.status(200).send("Sala Actualizada!")
+			} else {
+				res.status(403).send("Error al actualizar la Sala.")
+			}
+		})
+	} else {
+		res.render("index")
+	}
+})
+
+router.delete("/delsala", (req, res) => {
+	if (typeof req.session.email != "undefined") {
+		var data = {
+			correo_usuario: req.session.email,
+			codigo: req.body.codigo
+		}
+		
+		SalaModel.removeSala(data, (results) => {
+			if (results) {
+				res.status(200).send("Sala Eliminada!")
+			} else {
+				res.status(403).send("Error al eliminar la Sala.")
+			}
+		})
+	} else {
+		res.render("index")
+	}
+})
+
 router.get("/planificarhorarios", (req, res) => {
 	if (typeof req.session.email != "undefined") {
 		res.render("planificarhorarios")
@@ -889,13 +976,142 @@ router.post("/doplanificar", (req, res) => {
 		var data = {
 			correo_usuario: req.session.email,
 			codigo_area: req.session.area,
-			seccion: req.body.seccion
+			seccion: req.body.seccion,
+			cantidad_semanas: req.body.cantidad_semanas,
+			dia: req.body.dia,
+			mes: req.body.mes
 		}
 		
 		PlanificarHorariosModel.inHorarios(data, (results) => {
-			res.send(results)
+			res.status(200).send(results)
 		})
 		
+	} else {
+		res.render("index")
+	}
+})
+
+router.get("/horarios", (req, res) => {
+	if (typeof req.session.email != "undefined") {
+		res.render("horarios")
+	} else {
+		res.render("index")
+	}
+})
+
+router.get("/gethorarios", (req, res) => {
+	if (typeof req.session.email != "undefined") {
+		var data = {
+			correo_usuario: req.session.email
+		}
+		
+		PlanificarHorariosModel.getHorarios(data, (results) => {
+			res.status(200).send(results)
+		})
+	} else {
+		res.render("index")
+	}
+})
+
+router.post("/getrecomendaciondocente", (req, res) => {
+	if (typeof req.session.email != "undefined") {
+		var data = {
+			correo_usuario: req.session.email,
+			asignatura: req.body.asignatura,
+			bloque_horario: req.body.bloquehorario
+		}
+		
+		PlanificarHorariosModel.getRecomendacionDocente(data, (results) => {
+			if (results) {
+				res.status(200).send(results)
+			} else {
+				res.status(403).send([])
+			}
+		})
+	} else {
+		res.render("index")
+	}
+})
+
+router.get("/feriados", (req, res) => {
+	if (typeof req.session.email != "undefined") {
+		res.render("feriados")
+	} else {
+		res.render("index")
+	}
+})
+
+router.get("/getferiados", (req, res) => {
+	if (typeof req.session.email != "undefined") {
+		var data = {
+			correo_usuario: req.session.email
+		}
+		
+		FeriadoModel.getFeriados(data, (results) => {
+			res.status(200).send(results)
+		})
+		
+	} else {
+		res.render("index")
+	}
+})
+
+router.post("/inferiado", (req, res) => {
+	if (typeof req.session.email != "undefined") {
+		var data = {
+			correo_usuario: req.session.email,
+			dia: req.body.dia,
+			mes: req.body.mes
+		}
+		
+		FeriadoModel.inFeriado(data, (results) => {
+			if (results) {
+				res.status(200).send("Feriado Registrado!")
+			} else {
+				res.status(403).send("Error al ingresar el Feriado.")
+			}
+		})
+		
+	} else {
+		res.render("index")
+	}
+})
+
+router.put("/upferiado", (req, res) => {
+	if (typeof req.session.email != "undefined") {
+		var data = {
+			correo_usuario: req.session.email,
+			id: req.body.id,
+			dia: req.body.dia,
+			mes: req.body.mes
+		}
+		
+		FeriadoModel.updateFeriado(data, (results) => {
+			if (results) {
+				res.status(200).send("Feriado Actualizado!")
+			} else {
+				res.status(403).send("Error al actualizar el Feriado.")
+			}
+		})
+	} else {
+		res.render("index")
+	}
+})
+
+router.delete("/delferiado", (req, res) => {
+	if (typeof req.session.email != "undefined") {
+		var data = {
+			correo_usuario: req.session.email,
+			id: req.body.id
+		}
+		
+		FeriadoModel.removeFeriado(data, (results) => {
+			if (results) {
+				res.status(200).send("Feriado Eliminado!")
+			} else {
+				res.status(403).send("Error al eliminar el Feriado.")
+			}
+		})
 	} else {
 		res.render("index")
 	}

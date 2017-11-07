@@ -66,7 +66,10 @@ $(document).ready(() => {
     $("#btnplanificar").on("click", () => {
         var data = {
             carrera: $("#planificarcarrera").val(),
-            seccion: $("#seccionplanificar").val()
+            seccion: $("#seccionplanificar").val(),
+            cantidad_semanas: $("#cantidadsemanas").val(),
+            dia: $("#diacomienzo").val(),
+            mes: $("#mescomienzo").val()
         }
         
         $.ajax({
@@ -74,7 +77,8 @@ $(document).ready(() => {
             url: "/doplanificar",
             data: data,
             success: (data) => {
-                $("#tablehorariocreado").html(data)
+                alert(data)
+                window.location.reload()
             }
         })
     })

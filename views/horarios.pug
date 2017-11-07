@@ -1,0 +1,27 @@
+extends ./_layout.pug
+
+block content
+    #mostrarhorarios.formcontent
+        .container
+            .row
+                .col-md-12
+                    h2.text-center Horarios
+            .row#filahorarios
+            
+    .modal.fade#modalplanificar(tabindex="-1", role="dialog")
+        .modal-dialog(role="document")
+            .modal-content
+                .modal-header
+                    button.close(type="button", data-dismiss="modal", arial-label="Close")
+                        span(aria-hidden="true") X
+                    h4.text-center.modal-title Docentes Recomendados
+                .modal-body
+                    .row
+                        .col-md-12
+                            .table-responsive
+                                table.table#tablerecomendaciondocentes
+                .modal-footer
+                    button.btn.btn-default(type="button", data-dismiss="modal") Cerrar
+
+block scripts
+    script(type="text/javascript", src="/js/horarios.js")

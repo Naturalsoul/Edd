@@ -1,0 +1,108 @@
+extends ./_layout
+
+block content
+    #ingresarsala.formcontent
+        .container
+            .row
+                .col-md-12
+                    h2.text-center Sala
+            .row
+                .col-md-12
+                    form#form-sala
+                        .row
+                            .col-md-6
+                                .form-group
+                                    label(for="codigosala") Código
+                                    input.form-control#codigosala(type="text", placeholder="Ingrese el código de la Sala", name="codigosala")
+                            .col-md-6
+                                .form-group
+                                    label(for="capacidadalumnos") Capacidad de Alumnos
+                                    input.form-control#capacidadalumnos(type="number", placeholder="Ingrese la capacidad máxima de alumnos de la Sala", name="capacidadalumnos")
+                            .col-md-6
+                                .form-group
+                                    label(for="equipamientosala") Equipamiento Tecnológico
+                                    select.form-control#equipamientosala(name="equipamientosala")
+                                        option(value="0") Laboratorio
+                                        option(value="1") Sala
+                                        option(value="2") Leica
+                                        option(value="3") Taller
+                            .col-md-6
+                                .form-group
+                                    label(for="btndisponibilidadsala") Disponibilidad
+                                    br
+                                    a.btn.btn-default#btndisponibilidadsala(data-toggle="modal", data-target="#modaldisponibilidadsala") Ingresar Disponibilidad
+                        .row
+                            .col-md-12
+                                .form-group#btnupdateinsertsala
+                                    button.btn.btn-default#btningresarsala(type="button") Ingresar Sala
+                                    
+    #mostrarsala.tablecontent
+        .container
+            .row
+                .col-md-12
+                    h2.text-center Listado de Salas
+            .row
+                .col-md-12
+                    .table-responsive
+                        table.table
+                            thead
+                                tr
+                                    th Código
+                                    th Capacidad Máxima de Alumnos
+                                    th Equipamiento Tecnológico
+                                    th Disponibilidad
+                                    th Acciones
+                            tbody#tablesalas
+                            
+    .modal.fade#modaldisponibilidadsala(tabindex="-1", role="dialog")
+        .modal-dialog(role="document")
+            .modal-content
+                .modal-header
+                    button.close(type="button", data-dismiss="modal", arial-label="Close")
+                        span(aria-hidden="true") X
+                    h4.text-center.modal-title Ingresar Disponibilidad
+                .modal-body
+                    .row
+                        .col-md-12
+                            .table-responsive
+                                table.table.table-bordered
+                                    thead
+                                        tr
+                                            th Bloques
+                                            th Lunes
+                                            th Martes
+                                            th Miercoles
+                                            th Jueves
+                                            th Viernes
+                                            th Sabado
+                                    tbody#tabledisponibilidadsala
+                .modal-footer
+                    button.btn.btn-default(type="button", data-dismiss="modal") Cerrar
+                    
+    .modal.fade#modaldisponibilidadsalalistado(tabindex="-1", role="dialog")
+        .modal-dialog(role="document")
+            .modal-content
+                .modal-header
+                    button.close(type="button", data-dismiss="modal", arial-label="Close")
+                        span(aria-hidden="true") X
+                    h4.text-center.modal-title Disponibilidad
+                .modal-body
+                    .row
+                        .col-md-12
+                            .table-responsive
+                                table.table.table-bordered
+                                    thead
+                                        tr
+                                            th Bloques
+                                            th Lunes
+                                            th Martes
+                                            th Miercoles
+                                            th Jueves
+                                            th Viernes
+                                            th Sabado
+                                    tbody#tabledisponibilidadsalalistado
+                .modal-footer
+                    button.btn.btn-default(type="button", data-dismiss="modal") Cerrar
+
+block scripts
+    script(type="text/javascript", src="/js/salas.js")
