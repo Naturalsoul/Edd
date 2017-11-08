@@ -88,9 +88,25 @@ $(document).ready(() => {
             data.forEach((e) => {
                 e.horario = JSON.parse(e.horario)
                 var dia = parseInt(e.dia_comienzo)
-                var mes = parseInt(e.mes_comienzo) - 1
+                var mes = (parseInt(e.mes_comienzo) - 1)
                 
                 e.horario.forEach((h, index) => {
+                    var diasSemana = {
+                        martes: (dia + 1) > meses[mes].dias ? (dia + 1) - meses[mes].dias : (dia + 1),
+                        miercoles: (dia + 2) > meses[mes].dias ? (dia + 2) - meses[mes].dias : (dia + 2),
+                        jueves: (dia + 3) > meses[mes].dias ? (dia + 3) - meses[mes].dias : (dia + 3),
+                        viernes: (dia + 4) > meses[mes].dias ? (dia + 4) - meses[mes].dias : (dia + 4),
+                        sabado: (dia + 5) > meses[mes].dias ? (dia + 5) - meses[mes].dias : (dia + 5)
+                    }
+                    
+                    var mesesSemana = {
+                        martes: (dia + 1) > meses[mes].dias ? meses[mes + 1].nombre : meses[mes].nombre,
+                        miercoles: (dia + 2) > meses[mes].dias ? meses[mes + 1].nombre : meses[mes].nombre,
+                        jueves: (dia + 3) > meses[mes].dias ? meses[mes + 1].nombre : meses[mes].nombre,
+                        viernes: (dia + 4) > meses[mes].dias ? meses[mes + 1].nombre : meses[mes].nombre,
+                        sabado: (dia + 5) > meses[mes].dias ? meses[mes + 1].nombre : meses[mes].nombre
+                    }
+                    
                     if (index == 0) {
                         html += "<div class='container slideTables' style='display: block;'>"
                     } else {
@@ -108,11 +124,11 @@ $(document).ready(() => {
                     html += "<tr>"
                     html += "<th></th>"
                     html += "<th>" + dia + " de " + meses[mes].nombre + "</th>"
-                    html += "<th>" + (dia + 1) + " de " + meses[mes].nombre + "</th>"
-                    html += "<th>" + (dia + 2) + " de " + meses[mes].nombre + "</th>"
-                    html += "<th>" + (dia + 3) + " de " + meses[mes].nombre + "</th>"
-                    html += "<th>" + (dia + 4) + " de " + meses[mes].nombre + "</th>"
-                    html += "<th>" + (dia + 5) + " de " + meses[mes].nombre + "</th>"
+                    html += "<th>" + diasSemana.martes + " de " + mesesSemana.martes + "</th>"
+                    html += "<th>" + diasSemana.miercoles + " de " + mesesSemana.miercoles + "</th>"
+                    html += "<th>" + diasSemana.jueves + " de " + mesesSemana.jueves + "</th>"
+                    html += "<th>" + diasSemana.viernes + " de " + mesesSemana.viernes + "</th>"
+                    html += "<th>" + diasSemana.sabado + " de " + mesesSemana.sabado + "</th>"
                     html += "</tr>"
                     html += "<tr>"
                     html += "<th>Bloques Horarios</th>"
@@ -142,15 +158,6 @@ $(document).ready(() => {
                             }
                             
                             html += "</td>"
-                            
-                            if (i == 0) {
-                                dia++
-                                
-                                if (dia + 1 > meses[mes].dias) {
-                                    dia = 1
-                                    mes++
-                                }
-                            }
                         }
                         
                         html += "</tr>"
@@ -164,7 +171,14 @@ $(document).ready(() => {
                     
                     html += "</div>"
                     
-                    dia++
+                    for (var di = 0; di < 7; di++) {
+                        if (dia == meses[mes].dias) {
+                            dia = 1
+                            mes++
+                        } else {
+                            dia++
+                        }
+                    }
                 })
             })
             

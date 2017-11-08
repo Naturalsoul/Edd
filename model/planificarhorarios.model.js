@@ -268,19 +268,17 @@ model.inHorarios = (data, next) => {
                 var flagSala = false
                 
                 for (var c = 0; c < 6; c++) {
+                    var diaAux = dia
+                    var mesAux = mes + 1
                     
-                    dia++
-                    
-                    if (c + 1 == 6) {
-                        dia++
+                    if (diaAux + c > meses[mes]) {
+                        diaAux += c - meses[mes]
+                        mesAux++
+                    } else {
+                        diaAux += c
                     }
                     
-                    if (dia > meses[mes]) {
-                        dia = 1
-                        mes++
-                    }
-                    
-                    if (feriados.indexOf(dia.toString() + "/" + mes.toString()) == -1) {
+                    if (feriados.indexOf(diaAux.toString() + "/" + mesAux.toString()) == -1) {
                         for (var i = bloquesHorarios.indexOf(seccion[0].hora_inicio); i < bloquesHorarios.indexOf(seccion[0].hora_termino); i++) {
                             if (matrixSeccionSemestral[se][i][c].disponible) {
                                 for (var d = 0; d < e.docentes.length; d++) {
@@ -320,6 +318,15 @@ model.inHorarios = (data, next) => {
                     }
                 }
             })
+            
+            for (var di = 0; di < 7; di++) {
+                if (dia == meses[mes]) {
+                    dia = 1
+                    mes++
+                } else {
+                    dia++
+                }
+            }
         }
         
         var sql = "INSERT INTO horario (horario, dia_comienzo, mes_comienzo, codigo_seccion) VALUES('" + JSON.stringify(matrixSeccionSemestral) + "', '" + data.dia + "', '" + data.mes + "', '" + seccion[0].codigo + "')"
