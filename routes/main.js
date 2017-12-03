@@ -999,14 +999,34 @@ router.get("/horarios", (req, res) => {
 	}
 })
 
-router.get("/gethorarios", (req, res) => {
+router.post("/gethorarios", (req, res) => {
 	if (typeof req.session.email != "undefined") {
 		var data = {
-			correo_usuario: req.session.email
+			correo_usuario: req.session.email,
+			codigo: req.body.codigo
 		}
 		
 		PlanificarHorariosModel.getHorarios(data, (results) => {
 			res.status(200).send(results)
+		})
+	} else {
+		res.render("index")
+	}
+})
+
+router.delete("/delhorario", (req, res) => {
+	if (typeof req.session.email != "undefined") {
+		var data = {
+			correo_usuario: req.session.email,
+			id: req.body.id
+		}
+		
+		PlanificarHorariosModel.removeHorario(data, (results) => {
+			if (results) {
+				res.status(200).send("Horario Eliminado!")
+			} else {
+				res.status(403).send("Error al eliminar el Horario.")
+			}
 		})
 	} else {
 		res.render("index")
@@ -1027,6 +1047,20 @@ router.post("/getrecomendaciondocente", (req, res) => {
 			} else {
 				res.status(403).send([])
 			}
+		})
+	} else {
+		res.render("index")
+	}
+})
+
+router.get("/getseccionesinhorario", (req, res) => {
+	if (typeof req.session.email != "undefined") {
+		var data = {
+			correo_usuario: req.session.email,
+		}
+		
+		PlanificarHorariosModel.getSecciones(data, (results) => {
+			res.status(200).send(results)
 		})
 	} else {
 		res.render("index")

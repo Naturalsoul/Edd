@@ -6,6 +6,14 @@ block content
             .row
                 .col-md-12
                     h2.text-center Horarios
+            .row
+                .col-md-6
+                    .form-group
+                        label(for="seccionhorarios") Seleccione una Sección
+                        select.form-control#seccionhorarios(name="seccionhorarios")
+                .col-md-6
+                    .form-group
+                        button.btn.btn-default#btnbuscarhorario(type="button") Buscar Horario
             .row#filahorarios
             
     .modal.fade#modalplanificar(tabindex="-1", role="dialog")
@@ -24,4 +32,5 @@ block content
                     button.btn.btn-default(type="button", data-dismiss="modal") Cerrar
 
 block scripts
+    script(type="text/javascript", src="//cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js")
     script(type="text/javascript", src="/js/horarios.js")

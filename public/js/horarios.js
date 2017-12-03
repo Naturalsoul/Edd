@@ -1,12 +1,36 @@
 $(document).ready(() => {
-    getHorarios()
+    getSeccionesInHorarios()
     
-    function getHorarios () {
+    function getSeccionesInHorarios () {
         $.ajax({
             type: "GET",
-            url: "/gethorarios",
+            url: "/getseccionesinhorario",
             contentType: "application/json",
             dataType: "json",
+            success: inRes
+        })
+        
+        function inRes (data) {
+            var html = ""
+            
+            data.forEach((e) => {
+                html += "<option value='" + e.codigo + "'>" + e.codigo + "</option>"
+            })
+            
+            $("#seccionhorarios").html(html)
+        }
+    }
+    
+    $("#btnbuscarhorario").on("click", () => {
+        getHorarios($("#seccionhorarios").val())
+    })
+    
+    function getHorarios (codigo_seccion) {
+        
+        $.ajax({
+            type: "POST",
+            url: "/gethorarios",
+            data: {codigo: codigo_seccion},
             success: inRes
         })
         
@@ -85,10 +109,14 @@ $(document).ready(() => {
                 }
             ]
             
-            data.forEach((e) => {
+            data.forEach((e, indexTotal) => {
                 e.horario = JSON.parse(e.horario)
                 var dia = parseInt(e.dia_comienzo)
                 var mes = (parseInt(e.mes_comienzo) - 1)
+                var anio = e.anio
+                var semestre = e.semestre
+                var id = e.id
+                var seccion = e.codigo_seccion
                 
                 e.horario.forEach((h, index) => {
                     var diasSemana = {
@@ -108,13 +136,16 @@ $(document).ready(() => {
                     }
                     
                     if (index == 0) {
-                        html += "<div class='container slideTables' style='display: block;'>"
+                        html += "<div class='container slideTables-" + indexTotal + "' style='display: block;'>"
                     } else {
-                        html += "<div class='container slideTables' style='display: none;'>"
+                        html += "<div class='container slideTables-" + indexTotal + "' style='display: none;'>"
                     }
                     
-                    html += "<button class='btn btn-link pull-left' onclick='plusDivs(-1)'>&#10094;</button>"
-                    html += "<button class='btn btn-link pull-right' onclick='plusDivs(+1)'>&#10095;</button>"
+                    html += "<h5>Fecha: " + dia + "/" + (mes + 1) + "/" + anio + "</h5>"
+                    html += "<h5>" + (parseInt(semestre) + 1) + "º Semestre</h5>"
+                    html += "<button class='btn btn-link pull-left' onclick='plusDivs(-1, \"" + indexTotal + "\")'>&#10094;</button>"
+                    html += "<button class='btn btn-link pull-right' onclick='plusDivs(+1, \"" + indexTotal + "\")'>&#10095;</button>"
+                    
                     
                     html += "<h4 class='text-center'>" + (index + 1) + "º Semana</h4>"
                     html += "<div class='container'>"
@@ -180,9 +211,25 @@ $(document).ready(() => {
                         }
                     }
                 })
+                
+                html += "<br>"
+                html += "<a class='btn btn-danger' onclick='remove(\"" + id + "\")'>Eliminar Horario</a>  "
+                html += "<button class='btn btn-success' id='exportToExcel'>Exportar a Excel</button>"
+                html += "<input type='hidden' name='seccion' value='" + seccion + "' class='seccion'>"
+                html += "<br><hr><br>"
             })
             
             $("#filahorarios").html(html)
+            
+            $("#exportToExcel").click((e) => {
+                var time = new Date()
+                
+                $(".table-bordered").table2excel({
+                    exclude: "",
+                    name: "Horario de " + $(".seccion").val(),
+                    filename: "Horario " + $(".seccion").val() + " - " + time.getFullYear()
+                })
+            })
         }
     }
 })
@@ -216,17 +263,35 @@ function showRecom (bloquehorario, asignatura) {
 
 var slideIndex = 1
 
-function plusDivs (n) {
-    showDivs(slideIndex += n)
+function plusDivs (n, indexTotal) {
+    showDivs(slideIndex += n, indexTotal)
 }
 
-function showDivs (n) {
+function showDivs (n, indexTotal) {
     var i;
-    var x = document.getElementsByClassName("slideTables");
+    var x = document.getElementsByClassName("slideTables-" + indexTotal);
     if (n > x.length) {slideIndex = 1} 
     if (n < 1) {slideIndex = x.length} ;
     for (i = 0; i < x.length; i++) {
         x[i].style.display = "none"; 
     }
     x[slideIndex-1].style.display = "block"; 
+}
+
+function remove (id) {
+    if (confirm("¿Está seguro? Recuerde que deberá modificar manualmente las disponibilidades de los Docentes y Salas.")) {
+        $.ajax({
+            type: "DELETE",
+            url: "/delhorario",
+            data: {id: id},
+            success: (data) => {
+                alert(data)
+                window.location.reload()
+            },
+            error: (data) => {
+                alert(data)
+                window.location.reload()
+            }
+        })
+    }
 }

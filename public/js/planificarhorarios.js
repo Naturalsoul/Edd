@@ -72,14 +72,23 @@ $(document).ready(() => {
             mes: $("#mescomienzo").val()
         }
         
-        $.ajax({
-            type: "POST",
-            url: "/doplanificar",
-            data: data,
-            success: (data) => {
-                alert(data)
-                window.location.reload()
+        if (data.dia > 0 && data.dia < 32 && data.mes > 0 && data.mes < 13) {
+            
+            if (data.cantidad_semanas < 1) {
+                alert("Cantidad de semanas erroneas.")
+            } else {
+                $.ajax({
+                    type: "POST",
+                    url: "/doplanificar",
+                    data: data,
+                    success: (data) => {
+                        alert(data)
+                        window.location.reload()
+                    }
+                })
             }
-        })
+        } else {
+            alert("Día o Mes erroneos.")
+        }
     })
 })
