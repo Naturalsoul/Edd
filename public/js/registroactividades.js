@@ -16,7 +16,10 @@ $(document).ready(() => {
             var html = ""
             
             data.forEach((e) => {
-                html += "<tr><td>" + e.correo_usuario + "</td><td>" + e.accion + "</td><td>" + e.fecha_hora + "</td>"
+                var f = e.fecha_hora.split(/[-T:.]/g)
+                var d = f[2] + "/" + f[1] + "/" + f[0] + " " + (parseInt(f[3]) - 3) + ":" + f[4] + ":" + f[4] + " GTM-3"
+                
+                html += "<tr><td>" + e.correo_usuario + "</td><td>" + e.accion + "</td><td>" + d + "</td>"
             })
             
             $("#tableregistroactividades").html(html)

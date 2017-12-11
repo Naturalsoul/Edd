@@ -146,6 +146,14 @@ $(document).ready(() => {
             $('td input:checkbox', table).prop('checked',this.checked)
         })
     }
+    
+    $("#btndisponibilidadcompleta").on("click", () => {
+        for (var i = 0; i < 18; i++) {
+            for (var e = 0; e < 6; e++) {
+                $("#" + i + "-" + e).prop("checked", true)
+            }
+        }
+    })
 })
 
 function showDisponibilidad (disponibilidad) {

@@ -117,6 +117,14 @@ $(document).ready(() => {
         
         $("#tabledisponibilidadsala").html(html)
     }
+    
+    $("#btndisponibilidadcompleta").on("click", () => {
+        for (var i = 0; i < 18; i++) {
+            for (var e = 0; e < 6; e++) {
+                $("#" + i + "-" + e).prop("checked", true)
+            }
+        }
+    })
 })
 
 function showDisponibilidad (disponibilidad) {
