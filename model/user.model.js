@@ -5,7 +5,7 @@ var model = {}
 
 model.checkUser = (email, pass, next) => {
 	if (email == "admin@inacap.cl" && pass == "admin") {
-		next(true)
+		next([{correo: "admin@inacap.cl", codigo_area: "CH-INF-01"}])
 	} else {
 		var sql = "SELECT correo, codigo_area FROM usuario WHERE correo = '" + email + "' AND pass = '" + 		pass + "'"
 
