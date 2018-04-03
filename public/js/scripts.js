@@ -1,4 +1,4 @@
-$(document).ready(() => {
+﻿$(document).ready(() => {
 	checkSessions()
 	//getAreas()
 	//getAreasForModel()
@@ -12,7 +12,7 @@ $(document).ready(() => {
 			data: $("#login-form").serialize(),
 			success: (data) => {
 				if (data.connected) {
-					window.location.href = "https://edd-naturalsoul.c9users.io/";
+					window.location.href = "https://edd-1.herokuapp.com/";
 				} else {
 					alert("Usuario Inválido")
 				}
